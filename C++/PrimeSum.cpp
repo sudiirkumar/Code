@@ -6,7 +6,7 @@ int main(){
     cin>>n;
     if(n%2==0&&n>=4&&n<=50000){
         unsigned int i=0;
-        unsigned int prime[5133]={0};
+        unsigned int prime[n>5133?5133:n]={0};
         unsigned int k=0;
         bool flag=true;
         for(i=2;i<n;i++){
@@ -22,10 +22,6 @@ int main(){
                 k++;
             }
         }
-        // cout<<"Number : "<<k<<endl;
-        // for(i=0;i<k;i++)
-        //     cout<<prime[i]<<" ";
-        // cout<<endl;
         for(i=0;i<k;i++){
             for(int j=i;j<k;j++){
                 if(prime[i]+prime[j]==n){
