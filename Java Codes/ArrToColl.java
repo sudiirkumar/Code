@@ -3,7 +3,7 @@
 import java.util.*;
 public class ArrToColl{
     public static void main(String[] args) {
-        Integer arr[] = {12,123,34,12,34,1,41,4,23,4,2,42,14,1};
+        Integer arr[] = {123,1234,2,4124,1,24,21,4};
         System.out.println("The array is :");
         for(Integer x : arr){
             System.out.print(x+" ");
