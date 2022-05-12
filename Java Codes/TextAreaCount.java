@@ -2,7 +2,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class TextAreaCount implements ActionListener {
     JLabel l1,l2,l3,l4;
