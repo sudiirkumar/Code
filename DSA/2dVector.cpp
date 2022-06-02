@@ -2,11 +2,17 @@
 #include<vector>
 using namespace std;
 int main(){
-    vector<vector<int>> a={{21,34,3,12},{123,21,4},{123,4,21,1,3}};
-    for (int i = 0; i < a.size(); i++)       
-    {
-        for(int x:a[i]){
-            cout<<x<<" ";
+    int n,m;
+    cin>>n>>m;
+    vector<vector<int>> a(n,vector<int>(m,0));//initialisation
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>a[i][j];
+        }
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cout<<a[i][j]<<" ";
         }
         cout<<endl;
     }
