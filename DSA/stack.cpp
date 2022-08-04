@@ -10,7 +10,7 @@ int main(){
     s.push('h');
 
 
-    while (!s.isEmpty())
+    while (!s.empty())
     {
         cout<<s.top();
         s.pop();
