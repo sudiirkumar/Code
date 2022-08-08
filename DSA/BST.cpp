@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 class Node{
     public:
@@ -89,17 +90,50 @@ Node* remove(Node* root,int key){
         }
     }
 }
+void printRange(Node* root,int k1,int k2){
+    if(root==NULL){
+        return;
+    }
+    if(root->data>=k1 and root->data<=k2){
+        printRange(root->left,k1,k2);
+        cout<<root->data<<" ";
+        printRange(root->right,k1,k2);
+    }
+    else if(root->data<k1){
+        printRange(root->right,k1,k2);
+    }
+    else if(root->data>k2){
+        printRange(root->left,k1,k2);
+    }
+}
+void printPath(Node* root){
+    static vector<int> v;
+    if(root==NULL){
+        //null node
+        return;
+    }
+    if(root->left==NULL and root->right==NULL){
+        //leaf node
+        for(int x:v){
+            cout<<x<<"->";
+        }
+        cout<<root->data<<endl;
+        return;
+    }
+    v.push_back(root->data);
+    printPath(root->left);
+    printPath(root->right);
+    v.pop_back();
+    return;
+}
 int main(){
-    int arr[]={3,2,5,3,4,1,7};
+    int arr[]={5,7,8,3,2,4};
     Node* root=NULL;
     for(int x:arr){
         root = insertNode(root,x);
     }
     printInorder(root);
     cout<<endl;
-    int key;
-    cin>>key;
-    root=remove(root,key);
-    printInorder(root);
+    printPath(root);
     return 0;
 }
