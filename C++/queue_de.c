@@ -18,17 +18,30 @@ void push_back(int q[],int *r,int data){
     printf("\nQueue is full");
 }
 void push_front(int q[],int *f,int *r,int data){
-    if(*f==0 && r==-1){
+    if(*f==0 && *r==-1){
         q[++(*r)] = data;
     }
     else if(*f!=0){
-        
+        q[--(*f)] = data;
     }
-
+    else{
+        printf("\nFront insertion not possible");
+    }
 }
 void pop_front(int q[],int *f,int *r){
     if(!empty(*f,*r)){
         printf("\nData popped : %d",q[(*f)++]);
+        if(*f>*r){
+            *f = 0;
+            *r = -1;
+        }
+        return;
+    }
+    printf("\nQueue is empty");
+}
+void pop_back(int q[],int *f,int *r){
+    if(!empty(*f,*r)){
+        printf("The element deleted is %d",q[(*r)--]);
         if(*f>*r){
             *f = 0;
             *r = -1;
@@ -55,7 +68,7 @@ int main(){
     int r=-1,f=0;
     do{
         system("cls");
-        printf("\n1.Push\n2.Pop\n3.Display\n0.Exit\nEnter a choice : ");
+        printf("\n1.Push back\n2.Push front\n3.Pop back\n4.Pop front\n5.Display\n0.Exit\nEnter a choice : ");
         scanf("%d",&ch);
         switch (ch)
         {
@@ -65,9 +78,17 @@ int main(){
             push_back(q,&r,data);
             break;
         case 2:
-            pop_front(q,&f,&r);
+            printf("\nEnter a data : ");
+            scanf("%d",&data);
+            push_front(q,&f,&r,data);
             break;
         case 3:
+            pop_back(q,&f,&r);
+            break;
+        case 4:
+            pop_front(q,&f,&r);
+            break;
+        case 5:
             display(q,f,r);
             break;
         default:

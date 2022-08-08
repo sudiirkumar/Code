@@ -47,6 +47,48 @@ bool search(Node* root,int key){
         return search(root->left,key);
     }
 }
+Node* findMin(Node* root){
+    while(root->left!=NULL){
+        root = root->left;
+    }
+    return root;
+}
+Node* remove(Node* root,int key){
+    if(root==NULL){
+        return NULL;
+    }
+    if(key>root->data){
+        root->right = remove(root->right,key);
+    }
+    else if(key<root->data){
+        root->left = remove(root->left,key);
+    }
+    else{
+        //leaf
+        if(root->left==NULL and root->right==NULL){
+            delete root;
+            return NULL;
+        }
+        //1 child
+        else if(root->left==NULL){
+            Node* temp = root;
+            root = root->right;
+            delete temp;
+        }
+        else if(root->right==NULL){
+            Node* temp = root;
+            root = root->left;
+            delete temp;
+        }
+        //2 children
+        else{
+            Node* temp = findMin(root->right);
+            root->data = temp->data;
+            root->right = remove(root->right,temp->data);
+
+        }
+    }
+}
 int main(){
     int arr[]={3,2,5,3,4,1,7};
     Node* root=NULL;
@@ -57,6 +99,7 @@ int main(){
     cout<<endl;
     int key;
     cin>>key;
-    cout<<search(root,key);
+    root=remove(root,key);
+    printInorder(root);
     return 0;
 }
