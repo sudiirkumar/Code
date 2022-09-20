@@ -1,8 +1,7 @@
 #include<stdio.h>
 void insert(int a[],int *n,int x){
     int i;
-    for ( i = *n-1; i>=0; i--)
-    {   
+    for ( i = *n-1; i>=0; i--){   
         if(x<a[i])
             a[i+1] = a[i];
         else
