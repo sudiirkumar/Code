@@ -4,7 +4,7 @@ int main(){
     // char ch;
     // printf("Enter a character : ");
     // //scanf("%c",&ch);
-    // ch = getche();//function which return a char value
+    // ch = getche();//function which return a character value
     // printf("\nCharacter is %c",ch);
     // printf("ASCII value of %c is %u",ch,ch);
 
