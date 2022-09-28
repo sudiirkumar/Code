@@ -3,8 +3,10 @@
 int main(){
     int n;
     int x;
-    printf("Enter a number : ");
+    printf("Enter number of terms: ");
     scanf("%d",&n);
+    printf("Enter value of x : ");
+    scanf("%d",&x);
     int term = x;
     int sum = 0;
     for(int i=0;i<n;i++){
