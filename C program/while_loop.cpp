@@ -2,11 +2,11 @@
 int main(){
     int n;
     printf("Enter a number : ");
-    scanf("%d",&n);//n=100
-    int i=1;//initialise
-    while(i<=n){//condition
+    scanf("%d",&n);//n=10
+    int i=11;//initialise
+    while(i<=n){//11<=10
         printf("%d ",i);
-        i = i*2;//increment/decrement
+        i++;//increment/decrement
     }
     return 0;
 }
