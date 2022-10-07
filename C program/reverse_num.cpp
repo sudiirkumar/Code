@@ -1,10 +1,12 @@
-#include<stdio.h>
+//check if a number is positive, negative or zero
+#include<iostream>
+using namespace std;
 int main(){
     int n;
-    printf("Enter a number : ");
-    scanf("%d",&n);//n=5
-    for(int i=n;i>=1;i--){//i=5 4 3 2 1 0
-        printf("%d ",i);// 5 4 3 2 1
+    cout<<"Enter a number : ";
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cout<<"Hello "<<i<<endl;
     }
     return 0;
 }
