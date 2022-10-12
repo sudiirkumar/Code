@@ -4,6 +4,6 @@ int main(){
     printf("Enter a number : ");
     scanf("%d",&num);
     int lastDig = num%10;
-    printf("The last of %d is %d",num,lastDig);
+    printf("The last digit of %d is %d",num,lastDig);
     return 0;
 }

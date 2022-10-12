@@ -10,7 +10,7 @@ int main(){
     while(num!=0){
         digit = num%10;
         sum = sum + digit;
-        product = product * (digit);
+        product = product * digit;
         printf("%d ",digit);
         num = num/10;
     }
