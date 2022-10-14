@@ -7,7 +7,7 @@ int main(){
     int last_dig = num%10;
     int first_dig = 0;
     // while(num!=0){
-    //     digit = num%10;
+    //     first_dig = num%10;
     //     num/=10;//num = num/10
     // }
     while(num!=0){

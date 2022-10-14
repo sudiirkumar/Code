@@ -2,7 +2,7 @@
 int main(){
     int num;
     printf("Enter a number : ");
-    scanf("%d",&num);
+    scanf("%d",&num);//543
     int sum=0;
     int product = 1;
     int digit;
