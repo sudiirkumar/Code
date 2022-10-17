@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<math.h>
 int main(){
     int num;
     printf("Enter a number :");
@@ -18,7 +19,7 @@ int main(){
     // else{
     //     printf("\nNon-prime");
     // }
-    for(int i=2;i<num;i++){
+    for(int i=2;i<=sqrt(num);i++){
         if(num%i==0){
             isPrime = 0;
             break;
