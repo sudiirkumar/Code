@@ -1,3 +1,4 @@
+//143 -> 1! + 4! + 3!
 #include<stdio.h>
 int main(){
     int num;
