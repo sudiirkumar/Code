@@ -2,6 +2,7 @@
 #include<math.h>
 #include<stdlib.h>
 #include<conio.h>
+#include<climits>
 int main(){
     int a[100];
     int n;
@@ -9,7 +10,7 @@ int main(){
     int sum;
     do{
         system("cls");
-        printf("\n1.Input\n2.Print\n3.Even\n4.Odd\n5.Non-negative\n6.Negative\n7.Prime\n8.Sum\n9.Average\n10.Logical reverse\n0.Exit");
+        printf("\n1.Input\n2.Print\n3.Even\n4.Odd\n5.Non-negative\n6.Negative\n7.Prime\n8.Sum\n9.Average\n10.Logical reverse\n11.Greatest number and Smallest number\n0.Exit");
         printf("\n\nEnter your choice: ");
         scanf("%d",&ch);
         switch(ch){
@@ -59,7 +60,7 @@ int main(){
                     for(int i=0;i<n;i++){
                         sum = sum + a[i];
                     }
-                    printf("\nAverage: %f",sum*1.0/n);
+                    printf("\nAverage: %.2f",sum*1.0/n);
                     break;
             case 7: printf("\nPrime numbers are: \n");
                     for(int i=0;i<n;i++){
@@ -83,11 +84,25 @@ int main(){
                         printf("%d ",a[i]);
                     }
                     break;
+            case 11:int maxm;
+                    int minm;
+                    maxm = a[0];
+                    minm = a[0];
+                    for(int i=1;i<n;i++){
+                        if(maxm<a[i]){
+                            maxm = a[i];
+                        }
+                        if(minm>a[i]){
+                            minm = a[i];
+                        }
+                    }
+                    printf("\nGreatest Number: %d\nSmallest Number: %d",maxm,minm);
+                    break;
             case 0: exit(0);
         }
-        printf("\n\nPress any key to continue...\n");
+        printf("\n\nPress any key to continue...");
         getch();
     }
-    while(1);
+    while(1);//1!=0
     return 0;
 }
