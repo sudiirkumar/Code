@@ -39,22 +39,32 @@ int main(){
     printf("\n6.NOTA\t%d",count[6]);
     printf("\n\nWasted votes\t%d\n",count[0]);
     int maxm = 1;
-    for(int i=2;i<=5;i++){
+    for(int i=2;i<=6;i++){
         if(count[maxm]<count[i]){
                 maxm = i;
         }
     }
-    switch(maxm){
-        case 1: printf("BJP is winner with %d votes",count[maxm]);
-                break;
-        case 2: printf("INC is winner with %d votes",count[maxm]);
-                break;
-        case 3: printf("RJD is winner with %d votes",count[maxm]);
-                break;
-        case 4: printf("JDU is winner with %d votes",count[maxm]);
-                break;
-        case 5: printf("AAP is winner with %d votes",count[maxm]);
-                break;
+    printf("\nPress any key to view the winner...");
+    getch();
+    system("cls");
+    system("color 05");
+    if(maxm==6){
+        printf("\nVote is cancelled");
+    }
+    else
+    {
+        switch(maxm){
+                case 1: printf("BJP is winner with %d votes",count[maxm]);
+                        break;
+                case 2: printf("INC is winner with %d votes",count[maxm]);
+                        break;
+                case 3: printf("RJD is winner with %d votes",count[maxm]);
+                        break;
+                case 4: printf("JDU is winner with %d votes",count[maxm]);
+                        break;
+                case 5: printf("AAP is winner with %d votes",count[maxm]);
+                        break;
+        }
     }
     return 0;
 }
