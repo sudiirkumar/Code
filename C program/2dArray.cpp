@@ -5,7 +5,7 @@ int main(){
     //input
     for(int i=0;i<5;i++){
         for(int j=0;j<3;j++){
-            printf("Enter a value: ");
+            printf("Enter a value (%d,%d): ",i,j);
             scanf("%d",&arr[i][j]);
         }
     }
