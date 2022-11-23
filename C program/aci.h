@@ -1,9 +1,9 @@
 #include<math.h>
 int isEven(int num){//definition
-    return num%2==0?1:0;
+    return num%2==0;
 }
 int isPositive(int num){
-    return num>0?1:0;
+    return num>0;
 }
 int square(int num){
     int square = num*num;
@@ -23,15 +23,44 @@ int isPrime(int n){
     }
     return 1;
 }
-int reverse(int n){
-
+int reverse(int n){//n=123
+    int rev = 0;//321
+    while(n!=0){
+        int digit = n%10;
+        rev = rev*10 + digit;
+        n = n/10;
+    }
+    return rev;
 }
 int isArmstrong(int n){
-
-}
-int isPerfect(int n){
-
+    int temp = n;
+    int sum=0;
+    while(temp!=0){
+        int digit = temp%10;
+        sum += digit*digit*digit;
+        temp /= 10;
+    }
+    return n==sum;
 }
 int factorial(int n){
-
+    if(n==0)
+        return 1;
+    if(n<0)
+        return -1;
+    int fact=1;
+    for(int i=1;i<=n;i++){
+        fact = fact*i;
+    }
+    return fact;
+}
+int isStrong(int n){
+    int temp=n;
+    int digit;
+    int sum=0;
+    while(temp!=0){
+        digit = temp%10;
+        sum += factorial(digit);
+        temp /= 10;
+    }
+    return sum==n;
 }
