@@ -1,4 +1,11 @@
 #include<math.h>
+int power(int base,int exp){
+    int ans=1;
+    for(int i=0;i<exp;i++){
+        ans = ans*base;
+    }
+    return ans;
+}
 int isEven(int num){//definition
     return num%2==0;
 }
@@ -37,7 +44,7 @@ int isArmstrong(int n){
     int sum=0;
     while(temp!=0){
         int digit = temp%10;
-        sum += digit*digit*digit;
+        sum += power(digit,3);
         temp /= 10;
     }
     return n==sum;
