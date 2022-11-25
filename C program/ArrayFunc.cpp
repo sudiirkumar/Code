@@ -1,10 +1,19 @@
 #include<stdio.h>
+void print(int arr[],int n){
+    printf("\nContents of Array:\n");
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+}
+void input(int *p,int n){
+    for(int i=0;i<n;i++){
+        printf("Enter a value: ");
+        scanf("%d",p+i);
+    }
+}
 int main(){
-    int a[4];
-    printf("Value of a: %u",a);
-    printf("\nAddress of a[0]: %u",&a[0]);
-    printf("\nAddress of a[1]: %u",&a[1]);
-    printf("\nAddress of a[2]: %u",&a[2]);
-    printf("\nAddress of a[3]: %u",&a[3]);
+    int a[5];
+    input(a,5);
+    print(a,5);
     return 0;
 }
