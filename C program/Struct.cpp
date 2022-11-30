@@ -8,7 +8,9 @@ struct Student{//164
     char college[30];//30
 };
 int main(){
+    //declaration
     struct Student s1;
+    //input
     printf("Enter name: ");
     fflush(stdin);
     gets(s1.name);
@@ -24,11 +26,16 @@ int main(){
     printf("Enter college name: ");
     fflush(stdin);
     gets(s1.college);
+    // output
     printf("\nDETAILS\n");
-    printf("\nName: %s",s1.name);
-    printf("\nRoll : %d",s1.roll);
-    printf("\nBatch: %s",s1.batch);
-    printf("\nDOB: %s",s1.dob);
-    printf("\nCollege name: %s",s1.college);
+    printf("\nName: ");
+    puts(s1.name);
+    printf("Roll : %d",s1.roll);
+    printf("\nBatch: ");
+    puts(s1.batch);
+    printf("DOB: ");
+    puts(s1.dob);
+    printf("College name: ");
+    puts(s1.college);
     return 0;
 }
