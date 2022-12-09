@@ -19,38 +19,37 @@ typedef struct Student{
     char fname[30];
     char lname[30];
     unsigned short int roll;
-    double cgpa;   
+    int cgpa;   
     char course[20]; 
 }Student;
-void addStudent(Student st[],int *n){
+void addStudent(Student *st){
     printf("\nEnter first name: ");
     fflush(stdin);
-    gets(st[*n].fname);
+    gets(st->fname);
     printf("\nEnter last name: ");
     fflush(stdin);
-    gets(st[*n].lname);
+    gets(st->lname);
     printf("\nEnter roll number: ");
     fflush(stdin);
-    scanf("%d",&st[*n].roll);
+    scanf("%d",&st->roll);
     printf("\nEnter CGPA: ");
     fflush(stdin);
-    scanf("%f",&st[*n].cgpa);
+    scanf("%d",&st->cgpa);
     printf("\nEnter Course: ");
     fflush(stdin);
-    gets(st[*n].course);
-    *n ++;
+    gets(st->course);
 }
-int searchRoll(Student st[],int n,int r){
+int searchRoll(Student *st,int n,int r){
     for(int i=0;i<n;i++){
-        if(st[i].roll==r){
+        if((st+i)->roll==r){
             return i;
         }
     }
     return -1;
 }
-int searchName(Student st[],int n,char name[]){
+int searchName(Student *st,int n,char name[]){
     for(int i=0;i<n;i++){
-        if(strcmpi(st[i].fname,name)==0){
+        if(strcmpi((st+i)->fname,name)==0){
             return i;
         }
     }
@@ -59,20 +58,32 @@ int searchName(Student st[],int n,char name[]){
 void showDetails(Student st){
     printf("\n\nName: %s %s",st.fname,st.lname);
     printf("\nRoll: %d",st.roll);
-    printf("\nCGPA: %f",st.cgpa);
+    printf("\nCGPA: %d",st.cgpa);
     printf("\nCourse: %s",st.course);
 }
-void searchCourse(Student st[],int n,char course[]){
+void searchCourse(Student *st,int n,char course[]){
     int isFound = 0;
+    int cnt=0;
     for(int i=0;i<n;i++){
-        if(strcmpi(st[i].course,course)==0){
-            showDetails(st[i]);
+        if(strcmpi((st+i)->course,course)==0){
+            showDetails(*(st+i));
             isFound = 1;
+            cnt++;
         }
     }
     if(isFound==0){
         printf("\nNo students found.");
     }
+    else{
+        printf("\nNumber of students: %d",cnt);
+    }
+}
+void del(Student *st){
+    st->fname[0] = '\0';
+    st->lname[0] = '\0';
+    st->roll = -1;
+    st->cgpa = -1;
+    st->course[0] = '\0';
 }
 int main(){
     int ch;
@@ -87,7 +98,9 @@ int main(){
         printf("\nEnter your choice: ");
         scanf("%d",&ch);
         switch(ch){
-            case 1: addStudent(st,&noOfStudents);
+            case 1: addStudent(&st[noOfStudents]);
+                    noOfStudents++;
+                    //showDetails(st[noOfStudents-1]);
                     break;
             case 2: printf("\nEnter roll to search: ");
                     fflush(stdin);
@@ -115,6 +128,42 @@ int main(){
                     fflush(stdin);
                     gets(s);
                     searchCourse(st,noOfStudents,s);
+                    break;
+            case 5: printf("\nTotal number of students: %d",noOfStudents);
+                    break;
+            case 7: printf("\nEnter roll to update: ");
+                    fflush(stdin);
+                    scanf("%d",&x);
+                    x = searchRoll(st,noOfStudents,x);
+                    if(x==-1){
+                        printf("\nStudent not found");
+                    }
+                    else{
+                        showDetails(st[x]);
+                    }
+                    printf("\nEnter new details\n");
+                    addStudent(&st[x]);
+                    printf("\nNew details are: \n");
+                    showDetails(st[x]);
+                    break;
+            case 6: printf("\nEnter roll to delete: ");
+                    fflush(stdin);
+                    scanf("%d",&x);
+                    x = searchRoll(st,noOfStudents,x);
+                    if(x==-1){
+                        printf("\nStudent not found");
+                    }
+                    else{
+                        showDetails(st[x]);
+                    }
+                    printf("\nAre you sure?(Y/N):");
+                    fflush(stdin);
+                    gets(s);
+                    if(strcmpi(s,"y")==0){
+                        del(&st[x]);
+                        printf("\nStudent record deleted successfully\n");
+                        noOfStudents--;
+                    }
                     break;
             case 0: exit(0);
         }
