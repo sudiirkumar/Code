@@ -2,7 +2,7 @@
 #include<cmath>
 using namespace std;
 int main(){
-    int a,b,c;
+    int a,b,c ;
     cout<<"Enter values of a, b and c: ";
     cin>>a>>b>>c;
     int discriminant = (b*b) - (4*a*c);
