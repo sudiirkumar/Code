@@ -26,7 +26,7 @@ public class TicTacToe extends JFrame{
 
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
-                in[i][j].setBounds(i*100, j*100, 50, 50);
+                in[i][j].setBounds(i*100, j*100, 50,50);
                 in[i][j].setText("X");
                 panel.add(in[i][j]);
             }
