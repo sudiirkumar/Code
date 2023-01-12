@@ -2,11 +2,12 @@
 using namespace std;
 class Student{
     // Data members
+    private://optional
         string name;
         int roll;
         string adhar;
     //getter and setter methods
-    public:
+    public://access modifiers
         string getName(){
             return name;
         }
@@ -27,7 +28,7 @@ class Student{
         }
 };
 int main(){
-    Student s1;
+    Student s1;//object creation
     s1.setName("Aman Tiwary");
     s1.setRoll(12);
     s1.setAdhar("123456781234");
