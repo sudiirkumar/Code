@@ -57,7 +57,14 @@ public:
         cout<<"Roll: "<<roll<<endl;
         cout<<"Course: "<<course<<endl;
         cout<<"CGPA: "<<cgpa<<endl;
-    }  
+    }
+    void del(){
+        fname = "";
+        lname = "";
+        roll = -1;
+        cgpa = -1;
+        course = "";
+    }
 };
 int main(){
     Student s1;
