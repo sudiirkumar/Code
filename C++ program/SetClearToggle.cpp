@@ -7,6 +7,7 @@ int main(){
     cout<<"Enter bit position: ";
     cin>>i;
     int n;
+    //set
     if(i==0){
         n = 1;
     }
@@ -14,5 +15,10 @@ int main(){
         n = 1<<(i-1);
     }
     cout<<"Value after set: "<<(num|n)<<endl;
+    //clear
+    n = ~n;
+    cout<<"Value after clear: "<<(num&n)<<endl;
+    n = ~n;
+    cout<<"Value after toggle: "<<(num^n)<<endl;
     return 0;
 }
