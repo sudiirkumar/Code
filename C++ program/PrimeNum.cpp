@@ -17,6 +17,7 @@ int main(){
             }
         }
         if(i==n){
+            //prime number
             cout<<n<<" ";
             sum = sum + n;
         }
