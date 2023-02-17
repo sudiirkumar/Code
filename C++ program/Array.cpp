@@ -29,17 +29,12 @@ public:
     
 };
 bool helper(Student s1,Student s2){
-    if(s1.getMarks()>s2.getMarks()){
+    if(s1.getRoll()<s2.getRoll()){
         return true;
     }
     return false;
 }
 int main(){
-    Student s1;
-    s1.setname("Aman");
-    s1.setRoll(12);
-    s1.setMarks(100);
-
     Student s[5];
     int roll;
     int marks;
