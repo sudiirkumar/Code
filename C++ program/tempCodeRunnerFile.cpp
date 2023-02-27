@@ -1,1 +1,0 @@
-compare(a[j],a[min_pos]
