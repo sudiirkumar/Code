@@ -2,40 +2,28 @@
 #include<vector>
 using namespace std;
 int main(){
-    vector<int> vec;
-    vec.push_back(1);
-    vec.push_back(2);
-    for(int x : vec){
-        cout<<x<<" ";
+    vector<int> v;
+    v.push_back(1);
+    cout<<&v[0]<<endl;
+    cout<<v.capacity()<<endl;
+    v.push_back(2);
+    cout<<&v[0]<<endl;
+    cout<<v.capacity()<<endl;
+    v.push_back(4);
+    v.push_back(5);
+    v.push_back(5);
+    // v.pop_back();
+    v.push_back(6);
+    cout<<&v[0]<<endl;
+    cout<<v.capacity()<<endl;
+    cout<<v.size()<<endl;
+    for(int num : v){//for each
+        cout<<num<<" ";
     }
     cout<<endl;
-    // cout<<vec.size()<<endl;
-    cout<<vec.capacity()<<endl;
-    vec.push_back(3);
-    cout<<vec.capacity()<<endl;
-    vec.push_back(4);
-    vec.push_back(5);
-    cout<<vec.capacity()<<endl;
-    vec.push_back(6);
-    vec.push_back(7);
-    vec.push_back(8);
-    vec.pop_back();
-    vec.pop_back();
-    for(int x : vec){
-        cout<<x<<" "; 
+    for(int i=0;i<v.size();i++){
+        cout<<v[i]<<" ";
     }
     cout<<endl;
-    cout<<vec.size()<<endl;
-    vec.pop_back();
-    vec.pop_back();
-    for(int x : vec){
-        cout<<x<<" ";
-    }
-    cout<<endl;
-    cout<<vec.capacity()<<endl;
-    for(int i=0;i<vec.size();i++){
-        vec[i]++;
-        cout<<vec[i]<<" ";
-    }
     return 0;
 }

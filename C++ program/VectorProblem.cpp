@@ -11,13 +11,7 @@ vector<int> even(vector<int> nums){
     return ans;
 }
 int main(){
-    vector<int> nums;
-    int n;
-    for(int i = 0;i<10;i++){
-        cout<<"Enter a number: ";
-        cin>>n;
-        nums.push_back(n);
-    }
+    vector<int> nums = {1,2,3,4,5,6,7,8,9,12,3,1,21,34,3,23,3,34,124,434,5345,2,5,245};
     for(int x : nums){
         cout<<x<<" ";
     }
