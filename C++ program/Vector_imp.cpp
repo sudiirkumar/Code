@@ -55,6 +55,11 @@ public:
     }
 };
 int main(){
-    
+    Vector v;
+    v.push_back(1);
+    v.push_back(2);
+    v.push_back(3);
+    cout<<v.size()<<endl;
+    cout<<v.capacity()<<endl;
     return 0;
 }
