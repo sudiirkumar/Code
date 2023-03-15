@@ -53,4 +53,7 @@ public:
     T operator[](int i){
         return arr[i];
     }
+    ~Vector(){
+        delete [] arr;
+    }
 };
