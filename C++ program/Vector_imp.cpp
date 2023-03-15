@@ -36,7 +36,23 @@ public:
             curr_size++;
         }
     }
-    
+    void pop_back(){
+        if(curr_size>0){
+            curr_size--;
+        }
+    }
+    int size(){
+        return curr_size;
+    }
+    int capacity(){
+        return max_cap;
+    }
+    int get(int i){
+        return arr[i];
+    }
+    int operator[](int i){
+        return arr[i];
+    }
 };
 int main(){
     
