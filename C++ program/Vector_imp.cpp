@@ -1,8 +1,10 @@
 #include<iostream>
 using namespace std;
+//int a = 10
+template<typename T>
 class Vector{
     //data members
-    int *arr;
+    T *arr;
     int curr_size;
     int max_cap;
     //method,const, destructor
@@ -11,15 +13,15 @@ public:
     Vector(){
         curr_size = 0;
         max_cap = 1;
-        arr = new int[max_cap];
+        arr = new T[max_cap];
     }
     //methods
-    void push_back(int data){
+    void push_back(T data){
         if(curr_size==max_cap){//doubling case
             //creating new array
-            int *oldArr = arr;
+            T *oldArr = arr;
             max_cap = 2*max_cap;
-            arr = new int[max_cap];
+            arr = new T[max_cap];
             //coping old values into new array
             for(int i=0;i<curr_size;i++){
                 arr[i] = oldArr[i];
@@ -47,19 +49,25 @@ public:
     int capacity(){
         return max_cap;
     }
-    int get(int i){
+    T get(int i){
         return arr[i];
     }
-    int operator[](int i){
+    T operator[](int i){//operator overloading
         return arr[i];
     }
 };
 int main(){
-    Vector v;
-    v.push_back(1);
-    v.push_back(2);
-    v.push_back(3);
+    Vector<char> v;
+    v.push_back('c');
+    v.push_back('h');
+    v.push_back('a');
+    v.push_back('r');
+    v.push_back('.');
     cout<<v.size()<<endl;
     cout<<v.capacity()<<endl;
+    for(int i=0;i<v.size();i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
     return 0;
 }
