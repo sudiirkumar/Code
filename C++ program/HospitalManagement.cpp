@@ -1,12 +1,23 @@
 #include<iostream>
 using namespace std;
 class Patient{
+    //data members
     string name;
     unsigned short int age;
     bool isFullpaid;
     unsigned int fees;
     string department;
 public:
+    Patient(){
+
+    }
+    Patient(string name, unsigned short int age,string department,int fees){
+        this->name = name;
+        this->age = age;
+        this->department = department;
+        isFullpaid = false;
+        this->fees = fees;
+    }
     void payFee(int amount){
         if(isFullpaid){
             cout<<"Full fee is paid already!"<<endl;
@@ -34,6 +45,13 @@ class Doctor{
     string name;
     string department;
 public:
+    Doctor(){
+
+    }
+    Doctor(string name,string department){
+        this->name = name;
+        this->department = department;
+    }
     void printDetails(){
         cout<<"Name of doctor: "<<name<<endl;
         cout<<"Department: "<<department<<endl;
@@ -43,29 +61,36 @@ class Hospital{
     unsigned int noOfPatient;
     unsigned int noOfDocs;
 public:
-    void addPatient(){
-
+    Hospital(){
+        noOfDocs = 0;
+        noOfPatient = 0;
+    }
+    Patient addPatient(string name, unsigned short int age, string department, unsigned int fees){
+        Patient p(name,age,department,fees);
+        noOfPatient++;
+        return p;
     }
     void dischargePatient(){
-
+        noOfPatient--;
     }
-    void noOfPatient(){
-
+    unsigned int noOfPatient(){
+        return noOfPatient;
     }
-    void addDocs(){
-
+    Doctor addDocs(string name,string department){
+        Doctor d(name,department);
+        noOfDocs++;
+        return d;
     }
     void removeDocs(){
-
+        noOfDocs--;
     }
-    void noOfDocs(){
-
-    }
-    void searchPatient(){
-        
+    unsigned int noOfDocs(){
+        return noOfDocs;
     }
 };
 int main(){
-    
+    Hospital h;
+    Patient p1 = h.addPatient("A",10,"Jaundice",500);
+    p1.printDetails();
     return 0;
 }
