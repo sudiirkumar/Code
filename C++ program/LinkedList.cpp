@@ -4,7 +4,6 @@ class Node{
 public:
     int data;
     Node *next;
-    Node(){}
     Node(int data){
         this->data = data;
         next = NULL;
@@ -16,25 +15,71 @@ class LinkedList{
     int len;
 public:
     LinkedList(){
-        
-    }
+        head = tail = NULL;
+        len=0;
+    }   
     void push_back(int data){
-        
+        if(head==NULL){
+            //Node new_node(data);//static allocation
+            // int *a = new int;
+            Node *new_node = new Node(data);
+            head = tail = new_node;
+        }
+        else{
+            Node *new_node = new Node(data);
+            tail->next = new_node;
+            tail = new_node;
+        }
+        len++;
     }
     void push_front(int data){
-        
+        if(head==NULL){
+            Node *new_node = new Node(data);
+            head = tail = new_node;
+        }
+        else{
+            Node *new_node = new Node(data);
+            new_node->next = head;
+            head = new_node;
+        }
+        len++;
     }
     void print(){
-        
+        Node *temp = head;
+        while(temp!=NULL){
+            cout<<temp->data<<" --> ";
+            temp = temp->next;
+        }
+        cout<<"NULL"<<endl;
     }
     int length(){
-        
+        return len;
     }
     void pop_front(){
-        
+        if(head==NULL){
+            return;
+        }
+        Node *temp = head;
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
+        len--;
     }
     void pop_back(){
-        
+        if(head==NULL){
+            return;
+        }
+        Node *temp = head;
+        while(temp!=NULL){
+            if(temp->next->next==NULL){
+                break;
+            }
+            temp = temp->next;
+        }
+        temp->next = NULL;
+        delete tail;
+        tail = temp;
+        len--;
     }
     void reverse(){
         
@@ -42,6 +87,16 @@ public:
 };
 int main(){
     LinkedList l;
-    
+    l.push_back(1);
+    l.push_back(2);
+    l.push_back(3);
+    l.push_back(4);
+    l.push_front(0);
+    l.print();
+    l.pop_back();
+    l.print();
+    l.pop_front();
+    l.print();
+    cout<<l.length()<<endl;
     return 0;
 }
