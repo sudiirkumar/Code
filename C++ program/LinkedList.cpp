@@ -82,7 +82,19 @@ public:
         len--;
     }
     void reverse(){
-        
+        if(head==NULL){
+            return;
+        }
+        Node *p = NULL;
+        Node *c = head;
+        Node *n;
+        while(c!=NULL){
+            n = c->next;
+            c->next = p;
+            p = c;
+            c = n;
+        }
+        head = p;
     }
 };
 int main(){
@@ -93,9 +105,7 @@ int main(){
     l.push_back(4);
     l.push_front(0);
     l.print();
-    l.pop_back();
-    l.print();
-    l.pop_front();
+    l.reverse();
     l.print();
     cout<<l.length()<<endl;
     return 0;
