@@ -96,6 +96,15 @@ public:
         }
         head = p;
     }
+    ~LinkedList(){
+        Node *temp;
+        while(head!=NULL){
+            temp = head;
+            head = head->next;
+            temp->next = NULL;
+            delete temp;
+        }
+    }
 };
 int main(){
     LinkedList l;
