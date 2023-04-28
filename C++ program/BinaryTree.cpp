@@ -22,7 +22,42 @@ Node* buildTree(){
     new_node->right = buildTree();
     return new_node;
 }
+void preOrder(Node *root){
+    if(root==NULL){
+        cout<<"-1 ";
+        return;
+    }
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+}
+void postOrder(Node *root){
+    if(root==NULL){
+        cout<<"-1 ";
+        return;
+    }
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+}
+void inOrder(Node *root){
+    if(root==NULL){
+        cout<<"-1 ";
+        return;
+    }
+    inOrder(root->left);
+    cout<<root->data<<" ";
+    inOrder(root->right);
+}
+void levelOrder(Node *root){
+
+}
 int main(){
     Node *root = buildTree();
+    preOrder(root);
+    cout<<endl;
+    inOrder(root);
+    cout<<endl;
+    postOrder(root);
     return 0;
 }
