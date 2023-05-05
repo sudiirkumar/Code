@@ -6,7 +6,6 @@ public:
     int data;
     Node *left;
     Node *right;
-
     Node(int data){
         this->data = data;
         left = right = NULL;
@@ -53,16 +52,25 @@ void inOrder(Node *root){
 void levelOrder(Node *root){
     queue<Node*> q;
     q.push(root);
+    q.push(NULL);
     while(!q.empty()){
         Node *temp = q.front();
-        if(temp->left!=NULL){
-            q.push(temp->left);
+        if(temp==NULL){
+            cout<<"\n";
+            q.pop();
+            if(!q.empty())
+                q.push(NULL);
         }
-        if(temp->right!=NULL){
-            q.push(temp->right);
+        else{
+            if(temp->left!=NULL){
+                q.push(temp->left);
+            }
+            if(temp->right!=NULL){
+                q.push(temp->right);
+            }
+            cout<<temp->data<<" ";
+            q.pop();
         }
-        cout<<temp->data<<"   ";
-        q.pop();
     }
 }
 int main(){

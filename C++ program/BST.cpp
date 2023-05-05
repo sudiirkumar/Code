@@ -36,7 +36,7 @@ bool search(Node *root, int value,int level){
         return false;
     }
     if(root->data==value){
-        cout<<"level = "<<level;
+        cout<<"Level = "<<level;
         return true;
     }
     bool temp;
