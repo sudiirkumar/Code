@@ -2,14 +2,13 @@
 using namespace std;
 class HashTable;
 class Node{
+public:
     string key;
     int value;
     Node *next;
-public:
-    friend class HashTable;
-    Node(string key,int value){
-        this->key = key;
-        this->value = value;
+    Node(string k,int val){
+        key = k;
+        value = val;
         this->next = NULL;
     }
     ~Node(){
@@ -19,7 +18,7 @@ public:
     }
 };
 class HashTable{
-    Node **table;
+    Node** table;
     int curr_size;
     int table_size;
 
@@ -126,6 +125,5 @@ int main(){
     h.insert("Muskmelon",60);
 
     h.print();
-    cout<<h.search("Apple")<<endl;
     return 0;
 }
