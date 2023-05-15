@@ -125,5 +125,7 @@ int main(){
     h.insert("Muskmelon",60);
 
     h.print();
+    cout<<endl;
+    cout<<h.search("Bana")<<endl;
     return 0;
 }
