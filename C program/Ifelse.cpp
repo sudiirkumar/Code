@@ -1,11 +1,35 @@
 #include <stdio.h>
+#include<stdlib.h>
 int main(){
-	int n;
-	printf("Enter a number: ");
-	scanf("%d",&n);
-	int remainder = n%2;
-	if(remainder==0){
-		printf("%d is even",n);
-	}
+	//check which number is greater between 2 given numbers
+
+	// int a,b;
+	// printf("Enter 2 numbers: ");
+	// scanf("%d%d",&a,&b);
+	// if(a>b){
+	// 	printf("%d is greater than %d",a,b);
+	// }
+	// else{
+	// 	printf("%d is greater than %d",b,a);
+	// }
+
+	//check if a number is even or odd
+
+	// int num;
+	// printf("Enter a number: ");
+	// scanf("%d",&num);
+	// if(num%2==0)
+	// 	printf("%d is an Even number",num);
+	// else
+	// 	printf("%d is an Odd number",num);
+
+	// (num%2==0)?printf("%d is an Even number",num):printf("%d is an Odd number",num);
+
+	int a,b;
+	printf("Enter 2 numbers : ");
+	scanf("%d%d",&a,&b);
+	// int diff = (a>b)?a-b:b-a;
+	int diff = abs(a-b);
+	printf("Diff is %d",diff);	
 	return 0;
 }
