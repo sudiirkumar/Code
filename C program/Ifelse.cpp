@@ -25,11 +25,38 @@ int main(){
 
 	// (num%2==0)?printf("%d is an Even number",num):printf("%d is an Odd number",num);
 
-	int a,b;
-	printf("Enter 2 numbers : ");
-	scanf("%d%d",&a,&b);
-	// int diff = (a>b)?a-b:b-a;
-	int diff = abs(a-b);
-	printf("Diff is %d",diff);	
+	// int a,b;
+	// printf("Enter 2 numbers : ");
+	// scanf("%d%d",&a,&b);
+	// // int diff = (a>b)?a-b:b-a;
+	// int diff = abs(a-b);
+	// printf("Diff is %d",diff);	
+
+	//Take input cp and sp of a product and find if is it profit or loss.
+
+	// int cp,sp;
+	// printf("Enter cost price and selling price of the product: ");
+	// scanf("%d%d",&cp,&sp);
+	// int diff = abs(cp-sp);
+	// if(sp>cp){
+	// 	// diff = sp-cp;
+	// 	printf("Profit = %d",diff);
+	// }
+	// else{
+	// 	// diff = cp-sp;
+	// 	printf("Loss = %d",diff);
+	// }
+
+	//check if a character is 'a' or not
+
+	char ch;
+	printf("Enter a character: ");
+	scanf("%c",&ch);
+	if(ch=='a'){
+		printf("Yes");
+	}
+	else{
+		printf("No");
+	}
 	return 0;
 }
