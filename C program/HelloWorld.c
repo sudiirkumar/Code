@@ -1,10 +1,9 @@
-#include<stdio.h>//header file
+#include<stdio.h>//header files
 int main(){//main function
     printf("Hello");
     printf("\nHow");
-    printf("\nAre");
-    printf("\nYou");
-    printf("\n?");
+    printf("\nare");
+    printf("\nyou?");
     return 0;//returns 0 to indicate that the program was successfully executed.
 }
 /*
