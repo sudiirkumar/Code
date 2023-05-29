@@ -1,6 +1,8 @@
 #include <stdio.h>
 int main(){
-	int num=3;
+	int num;
+	printf("Enter a number: ");
+	scanf("%d",&num);
 	switch(num){
 	case 1:	printf("Monday");
 			break;
@@ -17,7 +19,6 @@ int main(){
 	case 7:	printf("Sunday");
 			break;
 	default: printf("Invalid input");
-			break;
 	}
 	return 0;
 }
