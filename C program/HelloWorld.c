@@ -1,30 +1,32 @@
-#include<stdio.h>//header files
-int main(){//main function
+#include<stdio.h>
+int main(){
     printf("Hello");
-    printf("\nHow");
-    printf("\nare");
-    printf("\nyou?");
-    return 0;//returns 0 to indicate that the program was successfully executed.
+    printf("\tWorld");
+    return 0;
 }
 /*
-print the following using printf() function:
-Q1.
-1
-2
-3
-4
-..
-10
-
-Q2.
-1
-22
-333
-4444
-55555
-
-Q3.
-Name    Roll    class
-Sudhir  1       12
-Aman    2       11
+Q1. Print the following pattern:
+    1
+    22
+    333
+    4444
+    55555
+Q2. Print the following:
+    Student name    Roll number   Marks
+    A               1               50
+    B               2               100
+Q3. Print the following pattern:
+        *
+       ***
+      *****
+     *******
+      *****
+       ***
+        *
+Q4. Print the following:
+    We
+    are
+    learning
+    C
+    Programming!
 */
