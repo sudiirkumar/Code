@@ -42,12 +42,21 @@ void postOrder(Node *root){
 }
 void inOrder(Node *root){
     if(root==NULL){
-        cout<<"N ";
+        // cout<<"N ";
         return;
     }
     inOrder(root->left);
     cout<<root->data<<" ";
     inOrder(root->right);
+}
+void inOrder2(Node *root){
+    if(root==NULL){
+        // cout<<"N ";
+        return;
+    }
+    inOrder(root->right);
+    cout<<root->data<<" ";
+    inOrder(root->left);
 }
 void levelOrder(Node *root){
     queue<Node*> q;
@@ -77,10 +86,8 @@ int main(){
     Node *root = buildTree();
     preOrder(root);
     cout<<endl;
-    inOrder(root);
+    inOrder(root->left);
     cout<<endl;
-    postOrder(root);
-    cout<<endl;
-    levelOrder(root);
+    inOrder2(root->right);
     return 0;
 }

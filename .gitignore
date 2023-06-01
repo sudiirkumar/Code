@@ -1,3 +1,5 @@
 *.exe
 *.class
 test.cpp
+test.py
+test.java
