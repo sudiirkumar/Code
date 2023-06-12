@@ -13,7 +13,7 @@ int main(){
 	scanf("%d",&num);
 	float answer = sqrt(num);
 	printf("squareroot is %f",answer);
-	int n = sin(3.14);
-	printf("Sin(180) is %d",n);
+	float n = sin(3.14/2);
+	printf("\nSin(90) is %f",n);
 	return 0;
 }
