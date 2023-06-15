@@ -1,10 +1,14 @@
 #include<stdio.h>
 int main(){
     int n;
-    printf("enter any number : ");
+    printf("Enter any number : ");
     scanf("%d",&n);
+    if(n<0){
+        printf("Factorial of negative number is not defined");
+        return 0;
+    }
     int fact=1;
-    int i=5;
+    int i;//1<=-6
     for(i=1;i<=n;i++){
         fact=fact*i;   
     }
