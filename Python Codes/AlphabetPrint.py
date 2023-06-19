@@ -1,4 +1,4 @@
 char = ord('A')
-while chr(char)<='Z':
+while char<=ord('z'):
     print(chr(char))
     char += 1
