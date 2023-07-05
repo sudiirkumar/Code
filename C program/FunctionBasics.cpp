@@ -1,32 +1,14 @@
-#include<stdio.h>
-void printHello(){
-    printf("Hello\n");
-    printf("How are you?\n");
-    return;
-}
-void sum1(){
-    int a = 10;
-    int b = 15;
-    int sum = a+b;
-    printf("%d\n",sum);
-}
-void sum2(int a,int b){
-    int sum = a+b;
-    printf("Sum: %d\n",sum);
-}
-int sum3(int a,int b){
-    int sum = a+b;
-    return sum;
-}
+#include<myheaderfile.h>
 int main()
 {
-    printHello();
-    sum1();
-    sum2(12,13);
-    sum2(234,13);
-    sum2(12,23);
-    sum2(12,345);
-    int n = 2*sum3(100,12);
-    printf("%d",n);
+    printf("%d\n",power(3,4));
+    printf("%d\n",factorial(4));
+    printf("%d\n",reverse(482473));
+    if(isPalindrome(123121)){// --> isPalindrome(12321)!=0
+        printf("Yes it is palindrome");
+    }
+    else{
+        printf("No it is not a palindrome");
+    }
     return 0;
 }
