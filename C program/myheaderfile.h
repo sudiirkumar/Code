@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<math.h>
 int max(int a,int b){
     if(a>b){
         return a;
@@ -66,4 +67,71 @@ int isPalindrome(int n){
         return 1;
     }
     return 0;
+}
+int LCM(int a,int b){
+    if(a==b)
+        return a;
+    int maxm,minm;
+    if(a>b){
+        maxm = a;
+        minm = b;
+    }
+    else{
+        maxm = b;
+        minm = a;
+    }
+    for(int i=1;i<=minm;i++){
+        if((i*maxm)%minm==0){
+            return (i*maxm);
+        }
+    }
+    return 1;
+}
+int HCF(int a,int b){
+    if(a==b){
+        return a;
+    }
+    int maxm,minm;
+    if(a>b){
+        maxm = a;
+        minm = b;
+    }
+    else{
+        maxm = b;
+        minm = a;
+    }
+    int hcf = 1;
+    for(int i=1;i<=sqrt(minm);i++){
+        if(minm%i==0){
+            int firstFactor = i;
+            int secondFactor = minm/i;
+            if(secondFactor%maxm==0){
+                if(hcf>secondFactor){
+                    hcf = secondFactor;
+                }
+            }
+            if(firstFactor%maxm==0){
+                if(hcf>firstFactor){
+                    hcf = firstFactor;
+                }
+            }
+        }
+    }
+    return hcf;
+}
+int isStrongNumber(int num){
+    int dig;
+    int sum = 0;
+    int temp = num;
+    while(temp>0){
+        dig = temp%10;
+        sum += factorial(dig);
+        temp /= 10;
+    }
+    if(sum==num){
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
