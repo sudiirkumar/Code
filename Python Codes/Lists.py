@@ -1,8 +1,4 @@
-n = int(input("Enter number of values: "))
-l = []
-for i in range(n):
-    num = int(input("Enter a value: "))
-    l.append(num)
+l = [1,23,4,5,12,9]
 print(l)
 l.sort()
 print(l)
