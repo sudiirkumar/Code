@@ -22,11 +22,43 @@ int print2largest(int arr[],int n){
     }
     return second_maxm;
 }
+void printReverse(int arr[],int n){
+    printf("\nArray in reverse order: \n");
+    for(int i=n-1;i>=0;i--){
+        printf("%d ",arr[i]);
+    }
+}
+void reverse(int arr[],int n){
+    int temp[n];
+    int j=0;
+    for(int i=n-1;i>=0;i--){
+        temp[j++] = arr[i];
+    }
+    //overwriting original array
+    for(int i=0;i<n;i++){
+        arr[i] = temp[i];
+    }
+}
+void reverse2(int arr[],int n){
+    for(int i=0;i<=n/2;i++){
+        int temp = arr[i];
+        arr[i] = arr[n-1-i];
+        arr[n-1-i] = temp;
+    }
+}
 int main(){
     int arr[] = {12,23,45,2,8,34,565,34,-1,-10};
     int n = sizeof(arr)/sizeof(arr[0]);
-    int key = 18;
-    int idx = linearSearch(arr,n,key);
-    printf("%d",idx);
+    // printf("%d",print2largest(arr,n));
+    // printReverse(arr,n);
+    printf("\nValues before reverse: \n");
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
+    reverse2(arr,n);
+    printf("\nValues after reverse: \n");
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
     return 0;
 }
