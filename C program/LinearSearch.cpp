@@ -46,19 +46,29 @@ void reverse2(int arr[],int n){
         arr[n-1-i] = temp;
     }
 }
+int countNegative(int arr[],int n){
+    int count = 0;
+    for(int i=0;i<n;i++){
+        if(arr[i]<0){
+            count++;
+        }
+    }
+    return count;
+}
 int main(){
-    int arr[] = {12,23,45,2,8,34,565,34,-1,-10};
+    int arr[] = {12,-23,45,2,-8,34,565,34,-1,-10};
     int n = sizeof(arr)/sizeof(arr[0]);
     // printf("%d",print2largest(arr,n));
     // printReverse(arr,n);
-    printf("\nValues before reverse: \n");
-    for(int i=0;i<n;i++){
-        printf("%d ",arr[i]);
-    }
-    reverse2(arr,n);
-    printf("\nValues after reverse: \n");
-    for(int i=0;i<n;i++){
-        printf("%d ",arr[i]);
-    }
+    // printf("\nValues before reverse: \n");
+    // for(int i=0;i<n;i++){
+    //     printf("%d ",arr[i]);
+    // }
+    // reverse2(arr,n);
+    // printf("\nValues after reverse: \n");
+    // for(int i=0;i<n;i++){
+    //     printf("%d ",arr[i]);
+    // }
+    printf("%d ",countNegative(arr,n));
     return 0;
 }
