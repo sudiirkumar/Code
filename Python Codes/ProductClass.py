@@ -1,16 +1,13 @@
 class Product:
-    product_name = "Product_name"
-    product_price = 0
-    product_discount_perc = 0
-    product_extra_discount = 0
     isExtraDiscountAvailable = False
     isPrimeMember = False
 
-    def setValues(self,name,price,discount,extra_dis):
+    def __init__(self,name,price,discount,extra_dis):
         self.product_name = name
         self.product_price = price
         self.product_discount_perc = discount
         self.product_extra_discount = extra_dis
+
     def printInfo(self):
         print("Name: ",self.product_name)
         print("Price: ",self.product_price)
@@ -29,11 +26,40 @@ class Product:
         return selling_price
     def changeSaleStatus(self,b):
         self.isExtraDiscountAvailable = b
-laptop = Product()
-laptop.setValues("Dell",40000,10,5)
-laptop.changeSaleStatus(True)
-print(laptop.calcSellingPrice())
 
-mouse = Product()
-mouse.setValues("Logitech",300,5,0)
-print(mouse.calcSellingPrice())
+class User:
+    def __init__(self,name,add,bal):
+        self.user_name = name
+        self.user_add = add
+        self.user_bal = bal
+
+    def printInfo(self):
+        print("User name:",self.user_name)
+        print("User address:",self.user_add)
+        print("User balance:",self.user_bal)
+
+    def createOrder(self,product):
+        print("PRODUCT INFORMATION")
+        product.printInfo()
+        print("Selling price:",product.calcSellingPrice())
+        choice = input("Confirm order? (Y/N): ")
+        if choice=="Y":
+            if self.user_bal>=product.calcSellingPrice():
+                print("Order successful")
+                self.user_bal = self.user_bal - product.calcSellingPrice()
+                print("Remaining balance: ",self.user_bal)
+            else:
+                print("Insufficient balance")
+        else:
+            print("Order cancelled")
+    
+laptop = Product("Dell",40000,10,5)
+laptop.changeSaleStatus(True)
+# print(laptop.calcSellingPrice())
+laptop.product_price = 1000
+
+mouse = Product("Logitech",300,5,2)
+# print(mouse.calcSellingPrice())
+
+u1 = User("ABC","Patna",100000)
+u1.createOrder(laptop)
