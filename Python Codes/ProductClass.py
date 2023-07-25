@@ -28,10 +28,33 @@ class Product:
         self.isExtraDiscountAvailable = b
 
 class User:
-    def __init__(self,name,add,bal):
-        self.user_name = name
+    def __init__(self,fname,lname,add,bal):
+        self.user_fname = fname
+        self.user_lname = lname
         self.user_add = add
         self.user_bal = bal
+
+    def getUserName(self):
+        name = self.user_fname + " " + self.user_lname
+        return name
+    
+    def getUserAdd(self):
+        return self.user_add
+
+    def getUserBal(self):
+        return self.user_bal
+
+    def setFirstName(self,new_name):
+        self.user_fname = new_name
+
+    def setLastName(self,new_name):
+        self.user_lname = new_name
+
+    def setBalance(self,balance):
+        self.user_bal = balance
+
+    def setAddress(self,add):
+        self.user_add = add
 
     def printInfo(self):
         print("User name:",self.user_name)
@@ -56,10 +79,15 @@ class User:
 laptop = Product("Dell",40000,10,5)
 laptop.changeSaleStatus(True)
 # print(laptop.calcSellingPrice())
-laptop.product_price = 1000
 
 mouse = Product("Logitech",300,5,2)
 # print(mouse.calcSellingPrice())
 
-u1 = User("ABC","Patna",100000)
-u1.createOrder(laptop)
+u1 = User("Aman","Sharma","Patna",10000)
+# u1.createOrder(laptop)
+# print(u1.user_name)
+u1.setFirstName("Baman")
+u1.setLastName("Tiwari")
+u1.setAddress("Gaya")
+print(u1.getUserName())
+print(u1.getUserAdd())
