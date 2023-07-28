@@ -19,7 +19,7 @@ typedef struct User{
 typedef struct Product{
     char name[30];
     int price;
-    float discount_percent;
+    int discount_percent;
 }Product;
 
 int login(char email[],char password[],User user[],int user_count){
@@ -35,16 +35,46 @@ int login(char email[],char password[],User user[],int user_count){
     }
     return -1;
 }
-
-void listProducts(User user,Product product[]){
-    printf("Logged in successfully");
+int calcSellingPrice(int price,int discount){
+    int discount_price = (price*discount)/100;
+    return price-discount_price;
 }
-
+void listProducts(User user,Product product[]){
+    printf("You are logged in successfully");
+    getch();
+    system("cls");
+    for(int i=0;i<10;i++){
+        printf("\n\n%d. Product name = %s",i+1,product[i].name);
+        fflush(stdout);
+        printf("\nProduct price: %d",product[i].price);
+        fflush(stdout);
+        printf("\nProduct discount: %d",product[i].discount_percent);
+        fflush(stdout);
+        printf("\nSelling price: %d",calcSellingPrice(product[i].price,product[i].discount_percent));
+    }
+}
+void setProductValues(char name[],int price,int discount,Product *p){
+    strcpy(p->name,name);
+    p->price = price;
+    p->discount_percent = discount;
+}
 int main(){
     int ch;
     int idx;
     User user[20];
     Product product[10];
+    
+    setProductValues("Dell laptop",60000,10,&product[0]);
+    setProductValues("Acer laptop",40000,8,&product[1]);
+    setProductValues("Lenovo laptop",45000,9,&product[2]);
+    setProductValues("HP laptop",50000,7,&product[3]);
+    setProductValues("Apple laptop",90000,6,&product[4]);
+    setProductValues("Samsung laptop",80000,10,&product[5]);
+    setProductValues("Asus laptop",45000,10,&product[6]);
+    setProductValues("Keyword",600,15,&product[7]);
+    setProductValues("Mouse",400,15,&product[8]);
+    setProductValues("Mouse pad",60,5,&product[9]);
+
     char temp1[40];
     char temp2[40];
     int user_count = 0;
