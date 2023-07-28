@@ -13,7 +13,7 @@ class Student:
         print("Roll:",self.roll)
         print("Address:",self.add)
 st1 = Student("Aman",1,"Gaya",12)
-print(st1.add)
+st1.roll = -10
 st1.print_info()
 
 st2 = Student("Rahul",2,"Patna",11) 

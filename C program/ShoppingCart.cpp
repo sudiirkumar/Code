@@ -1,6 +1,6 @@
 // Signup
 // Login
-// Search items
+// Select items
 // Bill
 
 //User -> user_name,user_email,user_password,user_balance
@@ -43,15 +43,49 @@ void listProducts(User user,Product product[]){
     printf("You are logged in successfully");
     getch();
     system("cls");
-    for(int i=0;i<10;i++){
-        printf("\n\n%d. Product name = %s",i+1,product[i].name);
-        fflush(stdout);
-        printf("\nProduct price: %d",product[i].price);
-        fflush(stdout);
-        printf("\nProduct discount: %d",product[i].discount_percent);
-        fflush(stdout);
-        printf("\nSelling price: %d",calcSellingPrice(product[i].price,product[i].discount_percent));
+    int ch;
+    int total_price = 0;
+    do{
+        system("cls");
+        for(int i=0;i<10;i++){
+            printf("\n\n%d. Product name = %s",i+1,product[i].name);
+            fflush(stdout);
+            printf("\nProduct price: %d",product[i].price);
+            fflush(stdout);
+            printf("\nProduct discount: %d",product[i].discount_percent);
+            fflush(stdout);
+            printf("\nSelling price: %d",calcSellingPrice(product[i].price,product[i].discount_percent));
+        }
+        printf("\n11. Show final cart value");
+        printf("\nEnter your choice: ");
+        scanf("%d",&ch);
+        switch(ch){
+            case 1: total_price += calcSellingPrice(product[0].price,product[0].discount_percent);
+                    break;
+            case 2: total_price += calcSellingPrice(product[1].price,product[1].discount_percent);
+                    break;
+            case 3: total_price += calcSellingPrice(product[2].price,product[2].discount_percent);
+                    break;
+            case 4: total_price += calcSellingPrice(product[3].price,product[3].discount_percent);
+                    break;
+            case 5: total_price += calcSellingPrice(product[4].price,product[4].discount_percent);
+                    break;
+            case 6: total_price += calcSellingPrice(product[5].price,product[5].discount_percent);
+                    break;
+            case 7: total_price += calcSellingPrice(product[6].price,product[6].discount_percent);
+                    break;
+            case 8: total_price += calcSellingPrice(product[7].price,product[7].discount_percent);
+                    break;
+            case 9: total_price += calcSellingPrice(product[8].price,product[8].discount_percent);
+                    break;
+            case 10: total_price += calcSellingPrice(product[9].price,product[9].discount_percent);
+                    break;
+        }
+        getch();
     }
+    while(ch!=11);
+    system("cls");
+    printf("\nTotal cart value: %d",total_price);
 }
 void setProductValues(char name[],int price,int discount,Product *p){
     strcpy(p->name,name);
@@ -80,7 +114,7 @@ int main(){
     int user_count = 0;
     do{
         system("cls");
-        printf("\n1.SignUp\n2.Login\n0. Exit\n");
+        printf("\n1. SignUp\n2. Login\n0. Exit\n");
         printf("\nEnter your choice: ");
         scanf("%d",&ch);
         switch(ch){
@@ -99,9 +133,6 @@ int main(){
                     user_count++;
                     break;
             case 2://Login
-                    // abc@gmail.com        abcd1234
-                    // abc2@gmail.com       bcde2345
-                    // bcd@gmail.com        cdef3456
                     printf("Enter email: ");
                     fflush(stdin);
                     gets(temp1);
@@ -114,6 +145,7 @@ int main(){
                     }
                     else{
                         listProducts(user[idx],product);
+                        return 0;
                     }
                     break;
             default:printf("\nWrong option selected");

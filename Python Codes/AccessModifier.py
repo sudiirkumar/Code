@@ -2,34 +2,37 @@
 # Protected : Limited access - _
 # Private : Accessed by no one - __
 class Student:
-    __name = None
-    __roll = None
-    __add = None
-    __Class = None
-    def __init__(self,name,roll,add,Class):
+
+    def __init__(self,name,roll,address):
         self.__name = name
         self.__roll = roll
-        self.__add = add
-        self.__Class = Class
-    def getName(self):
-        return self.__name
-    def getAdd(self):
-        return self.__add
-    def getRoll(self):
-        return self.__roll
-    def getClass(self):
-        return self.__Class
-    def setName(self,name):
-        self.name = name
-    def setName(self,add):
-        self.add = add
-    def setName(self,roll):
-        self.roll = roll
-    def setName(self,Class):
-        self.Class = Class
+        self.__address = address
+    # def getName(self):
+    #     return self.__name
 
-s = Student("Aman",1,"Gaya",12)
-print(s.getName())
-print(s.getRoll())
-print(s.getClass())
-print(s.getAdd())
+    @property
+    def name(self):
+        return "Hello "+self.__name
+    @property
+    def roll(self):
+        return self.__roll
+    @property
+    def address(self):
+        return self.__address
+    @name.setter
+    def name(self,new_name):
+        self.__name = new_name
+    @roll.setter
+    def roll(self,new_roll):
+        assert new_roll>0
+        self.__roll = new_roll
+    @address.setter
+    def address(self,new_address):
+        self.__address = new_address
+
+st1 = Student("Aman",1,"Gaya")
+print(st1.name)
+st1.name = "Baman"
+print(st1.name)
+st1.roll = 3
+print(st1.roll)
