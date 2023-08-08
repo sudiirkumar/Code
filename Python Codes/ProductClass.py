@@ -1,12 +1,12 @@
 class Product:
     isExtraDiscountAvailable = False
     isPrimeMember = False
+    product_extra_discount = 5
 
-    def __init__(self,name,price,discount,extra_dis):
+    def __init__(self,name,price,discount):
         self.product_name = name
         self.product_price = price
         self.product_discount_perc = discount
-        self.product_extra_discount = extra_dis
 
     def printInfo(self):
         print("Name: ",self.product_name)
@@ -76,18 +76,20 @@ class User:
         else:
             print("Order cancelled")
     
-laptop = Product("Dell",40000,10,5)
+laptop = Product("Dell",40000,10)
+laptop.product_extra_discount = 2 #instance
 laptop.changeSaleStatus(True)
-# print(laptop.calcSellingPrice())
+print(laptop.calcSellingPrice())
 
-mouse = Product("Logitech",300,5,2)
-# print(mouse.calcSellingPrice())
+mouse = Product("Logitech",300,5)
+mouse.changeSaleStatus(True)
+print(mouse.calcSellingPrice())
 
-u1 = User("Aman","Sharma","Patna",10000)
-# u1.createOrder(laptop)
-# print(u1.user_name)
-u1.setFirstName("Baman")
-u1.setLastName("Tiwari")
-u1.setAddress("Gaya")
-print(u1.getUserName())
-print(u1.getUserAdd())
+# u1 = User("Aman","Sharma","Patna",10000)
+# # u1.createOrder(laptop)
+# # print(u1.user_name)
+# u1.setFirstName("Baman")
+# u1.setLastName("Tiwari")
+# u1.setAddress("Gaya")
+# print(u1.getUserName())
+# print(u1.getUserAdd())
