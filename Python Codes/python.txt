@@ -1,0 +1,21 @@
+Input and output
+data types
+if else, elif
+match case
+loops -> for and while
+functions
+list
+set
+dictionary
+string
+tuple
+
+Class
+Object
+Method -> Static method, Class method
+Polymorphism -> Method overloading, Method overriding
+Inheritence -> Single level, Multi level, Multiple, Heirarchy, Hybrid, super keyword
+Abstraction -> Getter and setter -> @property and @getter.setter, Access modifier
+Encapsulation -> class and object
+Dunder method -> start and end with __ -> __init__, __dir__, __dict__, __str__, __repr__, __len__
+Help method
