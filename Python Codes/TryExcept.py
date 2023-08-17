@@ -1,13 +1,16 @@
-try:
-    a = int(input("Enter a number: "))
-except:
-    print("Please input a number")
-    exit()
-b = int(input("Enter a number: "))
 # try:
-#     print(a/b)
-# except:
-#     print("Cannot divide by zero")
-# print(a*b)
-# print(a+b)
+#     a = int(input("Enter a number: "))
+# except Exception as e:
+#     print("Error occured")
+#     print(e)
+# b = int(input("Enter a number: "))
+a = int(input())
+b = int(input())
+try:
+    print(a/b)
+except Exception as ex:
+    print("Cannot divide by zero")
+    print(ex)
+print(a*b)
+print(a+b)
 print(a-b)
