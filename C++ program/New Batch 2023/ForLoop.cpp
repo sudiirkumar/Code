@@ -13,4 +13,4 @@ int main(){
 // Print 100 to 1
 // Print all even number between 1 and 100
 // Print all the multiples of 7 between 1 and 100
-// Find the sum of odd numbers between 1 and 100
+// Find the sum of odd numbers between 1 and 100m
