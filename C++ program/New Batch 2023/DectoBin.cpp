@@ -11,11 +11,12 @@ int main(){
     cout<<"Enter a number: ";
     cin>>num;
     int rem;
+    int base = 8;
     int bin = 0;
     int i=0;
     while(num!=0){
-        rem = num%2;
-        num /= 2;
+        rem = num%base;
+        num /= base;
         bin = rem*power(10,i) + bin;
         i++;
     }
