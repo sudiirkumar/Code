@@ -11,7 +11,7 @@ int main(){
     cout<<"Enter a number: ";
     cin>>num;
     int rem;
-    int base = 2;
+    int base = 8;
     int bin = 0;
     int i=0;
     while(num!=0){
