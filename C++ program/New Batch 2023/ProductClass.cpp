@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
 class Product{
-public:
+private:    
     string productName;
     unsigned int productPrice;
     float discountPercentage;
     string sellerName;
-
+public:
     Product(string productName,unsigned int productPrice,string sellerName="N/A",float discountPercentage=0){
         this->productName = productName;
         this->productPrice = productPrice;
@@ -39,12 +39,14 @@ int main(){
     float discountPercentage;
     string sellerName; 
     for(int i=0;i<5;i++){
+        fflush(stdin);
         cout<<"Enter product name: ";
         cin>>productName;
         cout<<"Enter product price: ";
         cin>>productPrice;
         cout<<"Enter discount percentage: ";
         cin>>discountPercentage;
+        fflush(stdin);
         cout<<"Enter seller name: ";
         cin>>sellerName;
         product[i] = Product(productName,productPrice,sellerName,discountPercentage);
