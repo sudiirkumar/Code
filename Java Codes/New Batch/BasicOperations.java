@@ -17,7 +17,5 @@ public class BasicOperations {
         System.out.println(Math.max(a,b));
         System.out.println(Math.min(a,b));
         System.out.println((1.73/4)*a*a);
-        System.out.println();
-
     }
 }
