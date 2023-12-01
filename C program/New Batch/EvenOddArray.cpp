@@ -1,7 +1,13 @@
 #include<stdio.h>
 int main(){
-    int arr[] = {12,56,56,3,21,3,23,4,24,23,1,23,12,21,34,23,42,34,67,2,34,21,34,56,2,34,43};
-    int n = sizeof(arr)/sizeof(int);
+    int arr[100];
+    int n;
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        printf("Enter a number: ");
+        scanf("%d",&arr[i]);
+    }
     printf("\nEven elements: \n");
     for(int i=0;i<n;i++){
         if(arr[i]%2==0){
