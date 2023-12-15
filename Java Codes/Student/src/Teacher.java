@@ -1,17 +1,20 @@
 public class Teacher {
     String teacherName;
     String subject;
-    private int salary;
-    private int pf_amount;
+    private final int salary;
+    private final int pf_amount;
 
-    Teacher(String teacherName, String subject){
+    Teacher(String teacherName, String subject,int salary){
         this.teacherName = teacherName;
         this.subject = subject;
-        salary = 10000;
-        pf_amount = 2000;
+        this.salary = salary;
+        pf_amount = (int)(0.20*salary);
     }
     void printDetails(){
         System.out.println("Teacher name: "+teacherName);
         System.out.println("Subject: "+subject);
+        System.out.println("Salary: "+salary);
+        System.out.println("PF amount: "+pf_amount);
+        System.out.println();
     }
 }
