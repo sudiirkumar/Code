@@ -92,7 +92,7 @@ int main(){
     int x;
     char s[30];
     do{
-        system("cls");
+        system("cls");//Clear screen
         printf("\n1.Add a student\n2.Find the student by the given roll number\n3.Find the student by the given first name\n4.Find the students registered in a course\n");
         printf("5.Count of Students\n6.Delete a student\n7.Update Student\n0.Exit");
         printf("\nEnter your choice: ");
@@ -137,6 +137,7 @@ int main(){
                     x = searchRoll(st,noOfStudents,x);
                     if(x==-1){
                         printf("\nStudent not found");
+                        break;
                     }
                     else{
                         showDetails(st[x]);
@@ -152,6 +153,7 @@ int main(){
                     x = searchRoll(st,noOfStudents,x);
                     if(x==-1){
                         printf("\nStudent not found");
+                        break;
                     }
                     else{
                         showDetails(st[x]);
