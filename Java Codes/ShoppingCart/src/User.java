@@ -21,6 +21,9 @@ public class User {
     void setBalance(int balance){
         this.balance = balance;
     }
+    String getPassword(){
+        return password;
+    }
     void setPassword(String password){
         this.password = password;
     }
