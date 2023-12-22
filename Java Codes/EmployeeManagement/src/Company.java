@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public class Company {
+public class Company {
+
 }
