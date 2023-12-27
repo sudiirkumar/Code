@@ -15,8 +15,3 @@ int main(){
     printf("\nRemainder = \t%d",remainder);
     return 0;
 }
-#include<stdio.h>
-int main(){
-    
-    return 0;
-}
