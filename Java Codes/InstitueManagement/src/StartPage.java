@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartPage extends JFrame {
     JLabel instituteNameTxt;
@@ -8,6 +10,13 @@ public class StartPage extends JFrame {
 
     StartPage(){
         init();
+    }
+    private void modifyButton(JButton btn, String text, int x, int y, int width, int height){
+        btn.setText(text);
+        btn.setBounds(x,y,width,height);
+        btn.setFocusPainted(false);
+        btn.setForeground(Color.WHITE);
+        btn.setBackground(Color.DARK_GRAY);
     }
     private void init(){
         instituteNameTxt = new JLabel(Main.instituteName);
@@ -21,23 +30,22 @@ public class StartPage extends JFrame {
         setResizable(false);
         setTitle(Main.instituteName);
 
-        LoginBtn.setText("Login");
-        exitBtn.setText("Exit");
-        LoginBtn.setFocusPainted(false);
-        LoginBtn.setBackground(Color.DARK_GRAY);
-        LoginBtn.setForeground(Color.WHITE);
-        exitBtn.setFocusPainted(false);
+        modifyButton(LoginBtn,"Login",200,100,200,50);
+        modifyButton(exitBtn,"Exit",225,200,150,40);
         exitBtn.setBackground(Color.RED);
-        exitBtn.setForeground(Color.WHITE);
         instituteNameTxt.setFont(new Font("Consolas", Font.BOLD,35));
 
-        LoginBtn.addActionListener(e -> new LoginPage());
-        exitBtn.addActionListener(e -> dispose());
+        LoginBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new LoginPage();
+            }
+        });
+        exitBtn.addActionListener(e -> System.exit(0));
 
         instituteNameTxt.setBounds(0,0,600,50);
         instituteNameTxt.setHorizontalAlignment(0);
-        exitBtn.setBounds(225,200,150,40);
-        LoginBtn.setBounds(200, 100, 200,50);
 
         add(instituteNameTxt);
         add(LoginBtn);

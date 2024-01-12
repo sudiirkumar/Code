@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginPage extends JFrame {
-    JButton loginButton;
+    JButton loginButton,homeButton;
     JLabel loginTxt,usernameTxt,passwordTxt,forgotTxt;
     JTextField usernameField;
     JPasswordField passwordField;
@@ -11,6 +13,7 @@ public class LoginPage extends JFrame {
     }
     private void init(){
         loginButton = new JButton();
+        homeButton = new JButton();
         loginTxt = new JLabel();
         usernameTxt = new JLabel();
         passwordTxt = new JLabel();
@@ -23,12 +26,32 @@ public class LoginPage extends JFrame {
         setVisible(true);
         setResizable(false);
         setBounds(200,100,600,400);
+        setLayout(null);
 
         loginButton.setText("Login");
         loginButton.setFocusPainted(false);
         loginButton.setBackground(Color.DARK_GRAY);
         loginButton.setForeground(Color.white);
-        loginButton.addActionListener(e -> dispose());
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new AdminWelcomePage();
+            }
+        });
+        homeButton.setText("Home");
+        homeButton.setFocusPainted(false);
+        homeButton.setOpaque(false);
+        homeButton.setBorderPainted(false);
+        homeButton.setBackground(Color.white);
+        homeButton.setForeground(Color.BLACK);
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new StartPage();
+            }
+        });
         loginTxt.setText("LOGIN");
         loginTxt.setFont(new Font("Consolas",Font.BOLD,35));
         usernameTxt.setText("Username");
@@ -36,13 +59,14 @@ public class LoginPage extends JFrame {
 
         loginTxt.setBounds(0,0,600,50);
         loginTxt.setHorizontalAlignment(0);
-        usernameTxt.setBounds(0,100,600,30);
+        usernameTxt.setBounds(0,80,600,30);
         usernameTxt.setHorizontalAlignment(0);
-        usernameField.setBounds(30,150,570,50);
-        passwordTxt.setBounds(0,220,600,30);
+        usernameField.setBounds(25,130,540,30);
+        passwordTxt.setBounds(0,200,600,30);
         passwordTxt.setHorizontalAlignment(0);
-        passwordField.setBounds(30,270,570,50);
-        loginButton.setBounds(225,200,150,40);
+        passwordField.setBounds(25,250,540,30);
+        loginButton.setBounds(225,300,150,40);
+        homeButton.setBounds(10,0,100,30);
 
         add(loginTxt);
         add(usernameTxt);
@@ -50,5 +74,6 @@ public class LoginPage extends JFrame {
         add(passwordTxt);
         add(passwordField);
         add(loginButton);
+        add(homeButton);
     }
 }
