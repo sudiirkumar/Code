@@ -2,8 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class AdmissionPage extends JFrame {
+    private boolean isEnq;
+    private int id;
     JLabel admissionTxt;
     JLabel nameTxt,addressTxt,courseTxt,dateTxt,mobTxt,fatherNameTxt;
     JLabel enquiryIdTxt,feeTxt,paidFeeTxt,teacherTxt,courseDurationTxt;
@@ -11,7 +17,10 @@ public class AdmissionPage extends JFrame {
     JTextField enquiryIdField,feeField,paidFeeField,teacherField;
     JButton submitBtn,searchEnquiryBtn;
 
-    AdmissionPage(){init();}
+    AdmissionPage(){
+        isEnq = false;
+        init();
+    }
     private void init(){
         admissionTxt = new JLabel("Admission Page");
         enquiryIdTxt = new JLabel("Enquiry number:");
@@ -41,7 +50,7 @@ public class AdmissionPage extends JFrame {
         setTitle(Main.instituteName);
         setVisible(true);
         setResizable(false);
-        setBounds(200,100,500,750);
+        setBounds(200,0,500,750);
         setLayout(null);
 
         submitBtn.setText("Submit");
@@ -55,13 +64,78 @@ public class AdmissionPage extends JFrame {
         submitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                try{
+                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                    if(isEnq){
+                        PreparedStatement st=(PreparedStatement)conn.prepareStatement("UPDATE student SET adm_date=?,total_fee=?,dues_fee=?,teacher_name=? WHERE id=?");
+                        st.setString(1,dateField.getText());
+                        st.setInt(2,Integer.parseInt(feeField.getText()));
+                        st.setInt(3,Integer.parseInt(feeField.getText())-Integer.parseInt(paidFeeField.getText()));
+                        st.setString(4,teacherField.getText());
+                        st.setInt(5, Integer.parseInt(enquiryIdField.getText()));
+
+                        int rs = st.executeUpdate();
+                        if(rs==1){
+                            JOptionPane.showMessageDialog(searchEnquiryBtn, "Admission successful");
+                            dispose();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(searchEnquiryBtn, "Server Error");
+                        }
+                    }
+                    else{
+                        PreparedStatement st=(PreparedStatement)conn.prepareStatement("INSERT into student(student_name,father_name,address,course,adm_date,mobile,id,total_fee,dues_fee,teacher_name) values(?,?,?,?,?,?,?,?,?,?)");
+                        st.setString(1,nameField.getText());
+                        st.setString(2,fatherNameField.getText());
+                        st.setString(3,addressField.getText());
+                        st.setString(4,courseField.getText());
+                        st.setString(5,dateField.getText());
+                        st.setString(6,mobField.getText());
+                        st.setInt(7,++Main.noOfStudents);
+                        st.setInt(8, Integer.parseInt(feeField.getText()));
+                        st.setInt(9, Integer.parseInt(feeField.getText())-Integer.parseInt(paidFeeField.getText()));
+                        st.setString(10,teacherField.getText());
+                        int rs=st.executeUpdate();
+                        if(rs==1){
+                            dispose();
+                            JOptionPane.showMessageDialog(submitBtn, "Admission successful\nStudent id: "+Main.noOfStudents);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(submitBtn ,"Server Error");
+                        }
+                    }
+                }
+                catch(Exception ex){
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(searchEnquiryBtn, "Server Error");
+                }
             }
         });
         searchEnquiryBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                try{
+                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                    PreparedStatement st=(PreparedStatement)conn.prepareStatement("SELECT student_name,address,father_name,course,mobile,id from student where id=?");
+                    st.setInt(1, Integer.parseInt(enquiryIdField.getText()));
+                    ResultSet rs=st.executeQuery();
+                    if(rs.next()){
+                        isEnq = true;
+                        JOptionPane.showMessageDialog(searchEnquiryBtn, "Student found");
+                        nameField.setText(rs.getString("student_name"));
+                        addressField.setText(rs.getString("address"));
+                        fatherNameField.setText(rs.getString("father_name"));
+                        courseField.setText(rs.getString("course"));
+                        mobField.setText(rs.getString("mobile"));
+                        id = rs.getInt("id");
+                    }
+                    else
+                        JOptionPane.showMessageDialog(searchEnquiryBtn, "No enquiry found");
+                }
+                catch(Exception ex) {
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(searchEnquiryBtn, "Server Error");
+                }
             }
         });
 

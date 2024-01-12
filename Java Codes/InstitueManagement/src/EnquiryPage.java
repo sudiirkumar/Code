@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class EnquiryPage extends JFrame {
     JLabel enquiryTxt;
@@ -39,7 +43,29 @@ public class EnquiryPage extends JFrame {
         submitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                try{
+                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                    PreparedStatement st=(PreparedStatement)conn.prepareStatement("INSERT into student(student_name,father_name,address,course,enq_date,mobile,id) values(?,?,?,?,?,?,?)");
+                    st.setString(1,nameField.getText());
+                    st.setString(2,fatherNameField.getText());
+                    st.setString(3,addressField.getText());
+                    st.setString(4,courseField.getText());
+                    st.setString(5,dateField.getText());
+                    st.setString(6,mobField.getText());
+                    st.setInt(7,++Main.noOfStudents);
+                    int rs=st.executeUpdate();
+                    if(rs==1){
+                        dispose();
+                        JOptionPane.showMessageDialog(submitBtn, "Student registered\nStudent id: "+Main.noOfStudents);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(submitBtn ,"Server Error");
+                    }
+                }
+                catch(Exception ex) {
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(submitBtn, "Server Error");
+                }
             }
         });
 

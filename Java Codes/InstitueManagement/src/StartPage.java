@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class StartPage extends JFrame {
     JLabel instituteNameTxt;
@@ -38,8 +42,25 @@ public class StartPage extends JFrame {
         LoginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                new LoginPage();
+                try{
+                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                    PreparedStatement st=(PreparedStatement)conn.prepareStatement("SELECT id from users");
+                    PreparedStatement st2=(PreparedStatement)conn.prepareStatement("SELECT id from student");
+                    ResultSet rs=st.executeQuery();
+                    ResultSet rs2 = st2.executeQuery();
+                    while(rs.next()){
+                        Main.noOfUsers = rs.getInt("id");
+                    }
+                    while(rs2.next()){
+                        Main.noOfStudents = rs2.getInt("id");
+                    }
+                    dispose();
+                    new LoginPage();
+                }
+                catch(Exception ex) {
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(LoginBtn, "Server Error");
+                }
             }
         });
         exitBtn.addActionListener(e -> System.exit(0));

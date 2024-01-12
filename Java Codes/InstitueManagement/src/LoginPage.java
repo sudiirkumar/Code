@@ -2,8 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Arrays;
 
 public class LoginPage extends JFrame {
+    static String username,password;
     JButton loginButton,homeButton;
     JLabel loginTxt,usernameTxt,passwordTxt,forgotTxt;
     JTextField usernameField;
@@ -35,8 +41,32 @@ public class LoginPage extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                new AdminWelcomePage();
+                username = usernameField.getText();
+                password = new String(passwordField.getPassword());
+                try{
+                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                    PreparedStatement st=(PreparedStatement)conn.prepareStatement("SELECT is_admin from users where (username=? and password=?)");
+                    st.setString(1, username);
+                    st.setString(2, password);
+                    ResultSet rs=st.executeQuery();
+                    if(rs.next()){
+                        boolean isAdmin = rs.getBoolean("is_admin");
+                        dispose();
+                        JOptionPane.showMessageDialog(loginButton, "You have successfully logged in");
+                        if(isAdmin){
+                            new AdminWelcomePage();
+                        }
+                        else{
+                            new TeacherWelcomePage();
+                        }
+                    }
+                    else
+                        JOptionPane.showMessageDialog(loginButton, "Incorrect password or username.");
+                }
+                catch(Exception ex) {
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(loginButton, "Server Error");
+                }
             }
         });
         homeButton.setText("Home");

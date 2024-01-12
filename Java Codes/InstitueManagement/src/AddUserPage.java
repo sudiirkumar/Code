@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class AddUserPage extends JFrame {
     JLabel newUserTxt;
@@ -38,7 +42,28 @@ public class AddUserPage extends JFrame {
         submitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                try{
+                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                    PreparedStatement st=(PreparedStatement)conn.prepareStatement("INSERT into users VALUES(?,?,?,?,?,?)");
+                    st.setInt(1, Main.noOfUsers+1);
+                    st.setString(2, nameField.getText());
+                    st.setString(3,usernameField.getText());
+                    st.setString(4,passwordField.getText());
+                    st.setString(5,mobField.getText());
+                    st.setBoolean(6,adminCheckBox.isSelected());
+                    int rs=st.executeUpdate();
+                    if(rs==1){
+                        dispose();
+                        JOptionPane.showMessageDialog(submitBtn, "Account added");
+                        Main.noOfUsers++;
+                    }
+                    else
+                        JOptionPane.showMessageDialog(submitBtn, "Server Error");
+                }
+                catch(Exception ex) {
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(submitBtn, "Server Error");
+                }
             }
         });
 
