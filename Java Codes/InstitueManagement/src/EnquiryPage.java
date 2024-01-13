@@ -33,7 +33,7 @@ public class EnquiryPage extends JFrame {
         setTitle(Main.instituteName);
         setVisible(true);
         setResizable(false);
-        setBounds(200,100,440,500);
+        setBounds(200,0,440,500);
         setLayout(null);
 
         submitBtn.setText("Submit");
