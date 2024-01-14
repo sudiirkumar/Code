@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -39,28 +37,25 @@ public class StartPage extends JFrame {
         exitBtn.setBackground(Color.RED);
         instituteNameTxt.setFont(new Font("Consolas", Font.BOLD,35));
 
-        LoginBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
-                    PreparedStatement st=(PreparedStatement)conn.prepareStatement("SELECT id from users");
-                    PreparedStatement st2=(PreparedStatement)conn.prepareStatement("SELECT id from student");
-                    ResultSet rs=st.executeQuery();
-                    ResultSet rs2 = st2.executeQuery();
-                    while(rs.next()){
-                        Main.noOfUsers = rs.getInt("id");
-                    }
-                    while(rs2.next()){
-                        Main.noOfStudents = rs2.getInt("id");
-                    }
-                    dispose();
-                    new LoginPage();
+        LoginBtn.addActionListener(e -> {
+            try{
+                Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                PreparedStatement st= conn.prepareStatement("SELECT id from users");
+                PreparedStatement st2= conn.prepareStatement("SELECT id from student");
+                ResultSet rs=st.executeQuery();
+                ResultSet rs2 = st2.executeQuery();
+                while(rs.next()){
+                    Main.noOfUsers = rs.getInt("id");
                 }
-                catch(Exception ex) {
-                    System.out.println(ex);
-                    JOptionPane.showMessageDialog(LoginBtn, "Server Error");
+                while(rs2.next()){
+                    Main.noOfStudents = rs2.getInt("id");
                 }
+                dispose();
+                new LoginPage();
+            }
+            catch(Exception ex) {
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(LoginBtn, "Server Error");
             }
         });
         exitBtn.addActionListener(e -> System.exit(0));

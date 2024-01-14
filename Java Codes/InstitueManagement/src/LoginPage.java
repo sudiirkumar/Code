@@ -1,15 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Arrays;
 
 public class LoginPage extends JFrame {
     static String username,password;
+    public static String name;
     JButton loginButton,homeButton;
     JLabel loginTxt,usernameTxt,passwordTxt,forgotTxt;
     JTextField usernameField;
@@ -38,35 +36,33 @@ public class LoginPage extends JFrame {
         loginButton.setFocusPainted(false);
         loginButton.setBackground(Color.DARK_GRAY);
         loginButton.setForeground(Color.white);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                username = usernameField.getText();
-                password = new String(passwordField.getPassword());
-                try{
-                    Connection conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
-                    PreparedStatement st=(PreparedStatement)conn.prepareStatement("SELECT is_admin from users where (username=? and password=?)");
-                    st.setString(1, username);
-                    st.setString(2, password);
-                    ResultSet rs=st.executeQuery();
-                    if(rs.next()){
-                        boolean isAdmin = rs.getBoolean("is_admin");
-                        dispose();
-                        JOptionPane.showMessageDialog(loginButton, "You have successfully logged in");
-                        if(isAdmin){
-                            new AdminWelcomePage();
-                        }
-                        else{
-                            new TeacherWelcomePage();
-                        }
+        loginButton.addActionListener(e -> {
+            username = usernameField.getText();
+            password = new String(passwordField.getPassword());
+            try{
+                Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/codephile","root","root");
+                PreparedStatement st= conn.prepareStatement("SELECT is_admin,name from users where (username=? and password=?)");
+                st.setString(1, username);
+                st.setString(2, password);
+                ResultSet rs=st.executeQuery();
+                if(rs.next()){
+                    boolean isAdmin = rs.getBoolean("is_admin");
+                    name = rs.getString("name");
+                    dispose();
+                    JOptionPane.showMessageDialog(loginButton, "You have successfully logged in");
+                    if(isAdmin){
+                        new AdminWelcomePage();
                     }
-                    else
-                        JOptionPane.showMessageDialog(loginButton, "Incorrect password or username.");
+                    else{
+                        new TeacherWelcomePage();
+                    }
                 }
-                catch(Exception ex) {
-                    System.out.println(ex);
-                    JOptionPane.showMessageDialog(loginButton, "Server Error");
-                }
+                else
+                    JOptionPane.showMessageDialog(loginButton, "Incorrect password or username.");
+            }
+            catch(Exception ex) {
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(loginButton, "Server Error");
             }
         });
         homeButton.setText("Home");
@@ -75,12 +71,9 @@ public class LoginPage extends JFrame {
         homeButton.setBorderPainted(false);
         homeButton.setBackground(Color.white);
         homeButton.setForeground(Color.BLACK);
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new StartPage();
-            }
+        homeButton.addActionListener(e -> {
+            dispose();
+            new StartPage();
         });
         loginTxt.setText("LOGIN");
         loginTxt.setFont(new Font("Consolas",Font.BOLD,35));
