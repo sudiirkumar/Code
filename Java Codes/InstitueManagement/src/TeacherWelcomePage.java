@@ -67,6 +67,7 @@ public class TeacherWelcomePage extends JFrame {
                 ModifyUserPage.usernameInputField.setVisible(false);
                 ModifyUserPage.searchBtn.setVisible(false);
                 ModifyUserPage.adminCheckBox.setVisible(false);
+                ModifyUserPage.newUserTxt.setText("Settings");
                 ModifyUserPage.usernameInputField.setText(LoginPage.username);
                 ModifyUserPage.searchBtn.doClick();
             }

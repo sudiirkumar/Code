@@ -79,6 +79,7 @@ public class AdminWelcomePage extends JFrame {
                 ModifyUserPage.usernameInputTxt.setVisible(false);
                 ModifyUserPage.usernameInputField.setVisible(false);
                 ModifyUserPage.searchBtn.setVisible(false);
+                ModifyUserPage.newUserTxt.setText("Settings");
                 ModifyUserPage.usernameInputField.setText(LoginPage.username);
                 ModifyUserPage.searchBtn.doClick();
             }

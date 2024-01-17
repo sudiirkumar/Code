@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 public class ModifyUserPage extends JFrame {
     private int id;
     private String password;
-    JLabel newUserTxt;
+    public static JLabel newUserTxt;
     public static JLabel usernameInputTxt;
     JLabel nameTxt,mobTxt,usernameTxt,passwordTxt,adminTxt;
     JTextField nameField,mobField,usernameField,passwordField;
