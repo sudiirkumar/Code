@@ -29,6 +29,12 @@ void swap_arr(int *a, int *b, int n){
         swap(a+i,b+i);
     }
 }
+int linearSearch(int *arr, int n, int key){
+    for(int i=0;i<n;i++)
+        if(*(arr+i) == key)
+            return i;
+    return -1;
+}
 int main(){
     int a[10];
     int b[10];
