@@ -1,5 +1,11 @@
 #include<iostream>
 using namespace std;
+void print(int arr[],int n){
+    cout<<endl;
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+}
 void insertionSort(int arr[],int n){
     for(int i=1;i<n;i++){
         int j;
@@ -7,15 +13,17 @@ void insertionSort(int arr[],int n){
         for(j=i-1;j>=0;j--){
             if(arr[j]>x){
                 arr[j+1]=arr[j];
+                // cout<<"Shifted "<<arr[j+1]<<endl;
             }
             else
                 break;
         }
         arr[j+1] = x;
+        print(arr,n);
     }
 }
 int main(){
-    int arr[]={12,23,45,4,24,27,-86,3,-67,24};
+    int arr[]={3,7,1,5,-3,2};
     int n=sizeof(arr)/sizeof(int);
     //display the original array
     cout<<"Original array : \n";

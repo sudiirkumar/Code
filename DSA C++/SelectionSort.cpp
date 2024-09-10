@@ -1,5 +1,11 @@
 #include<iostream>
 using namespace std;
+void print(int arr[],int n){
+    cout<<endl;
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+}
 void selectionSort(int arr[],int n){
     for(int i = 0;i<n-1;i++){
         int minm=i;
@@ -7,10 +13,11 @@ void selectionSort(int arr[],int n){
             if(arr[minm]>arr[j])
                 minm=j;
         swap(arr[i],arr[minm]);
+        print(arr,n);
     }
 }
 int main(){
-    int arr[]={12,23,45,4,24,27,-86,3,-67,24};
+    int arr[]={1,5,9,-6,3,2,-8};
     int n = sizeof(arr)/sizeof(int);
     //display the original array
     cout<<"Original array : \n";
