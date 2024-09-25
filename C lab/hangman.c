@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#define WORD "PROGRAM"
+#define WORD "i love u harsh"
 
 typedef struct Letter
 {
@@ -18,14 +18,14 @@ Letter *create(Letter *start, char word[50])
 {
 
     start = (Letter *)malloc(sizeof(Letter));
-    start->ch = word[0];
+    start->ch = toupper(word[0]);
     start->hidden = 1;
     start->link = NULL;
     int i = 1;
     while (i < strlen(word))
     {
         Letter *new_Letter = (Letter *)malloc(sizeof(Letter));
-        new_Letter->ch = word[i++];
+        new_Letter->ch = toupper(word[i++]);
         new_Letter->hidden = 1;
         new_Letter->link = NULL;
 
@@ -65,6 +65,8 @@ void checkChar(Letter *start, char c)
             if (temp->hidden == 0)
             {
                 printf("\nAlready guessed the Letter\n");
+                printf("Attempts left: %d\n",HANGED);
+                --HANGED;
                 break;
             }
             else
@@ -89,20 +91,26 @@ void display(Letter *start)
     }
     else
     {
-        printf("\n------------------------------\n");
+        printf("\n");
+        for(int i=0;i<=strlen(WORD);i++)
+            printf("----");
+        printf("\n");
         while (temp != NULL)
         {
             if (temp->hidden == 1)
             {
-                printf("-\t");
+                printf("-   ");
             }
             else
             {
-                printf("%c\t", temp->ch);
+                printf("%c   ", temp->ch);
             }
             temp = temp->link;
         }
-        printf("\n------------------------------\n");
+        printf("\n");
+        for(int i=0;i<=strlen(WORD);i++)
+            printf("----");
+        printf("\n");
     }
 }
 
