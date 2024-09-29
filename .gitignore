@@ -1,7 +1,16 @@
+*
 *.exe
 *.class
 test.cpp
 test.py
 test.java
 test.txt
+!*.java
+!*.c
+!*.cpp
+!*.py
+!*.txt
+!*.png
+!*.jpg
+!*.pdf
 /.vscode

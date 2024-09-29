@@ -23,14 +23,14 @@ int main(){
     int n = sizeof(arr)/sizeof(int);
     //display the original array
     cout<<"Original array : \n";
-    for(auto x : arr){
+    for(int x : arr){
         cout<<x<<" ";
     }
     //calling the bubble sort function
     bubbleSort(arr,n);
     //display the sorted array
     cout<<"\nSorted array : \n";
-    for(auto x : arr){
+    for(int x : arr){
         cout<<x<<" ";
     }
     return 0;
