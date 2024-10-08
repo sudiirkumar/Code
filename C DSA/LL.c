@@ -1,31 +1,25 @@
-#include <stdio.h>
+#include<stdio.h>
 #include "LL.h"
 int main(){
-	LL *l = createList();
-	push_back(l,10);
-	push_back(l,20);
-	push_front(l,0);
-	push_back(l,30);
-	push_front(l,-10);
-	Node* temp = l->head;
-	while(temp!=NULL){
-		printf("%d ",temp->data);
-		temp = temp->next;
-	}
-	pop_front(l);
-	pop_back(l);
-	printf("\n%d\n",size(l));
-	temp = l->head;
-	while(temp!=NULL){
-		printf("%d ",temp->data);
-		temp = temp->next;
-	}
-	reverse(l);
-	printf("\n%d\n",size(l));
-	temp = l->head;
-	while(temp!=NULL){
-		printf("%d ",temp->data);
-		temp = temp->next;
-	}
-	return 0;
+    LL *l = createList();
+    insert(l,12);
+    insert(l,13);
+    insert(l,14);
+    insert(l,15);
+    insert(l,2);
+    insert(l,6);
+    display(l);
+    rem(l,13);
+    display(l);
+    rem(l,2);
+    display(l);
+    insert(l,45);
+    insert(l,30);
+    insert(l,33);
+    insert(l,34);
+    insert(l,49);
+    display(l);
+    rem(l,49);
+    display(l);
+    return 0;
 }

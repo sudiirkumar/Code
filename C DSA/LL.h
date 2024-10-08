@@ -1,82 +1,98 @@
-#include <stdlib.h>
+#include<stdlib.h>
+#include<stdio.h>
+#define null NULL
 typedef struct Node{
-	int data;
-	Node* next;
+    int val;
+    struct Node* next;
 }Node;
-Node* createNode(int data){
-	Node* new_node = (Node*)malloc(sizeof(Node));
-	new_node->data = data;
-	new_node->next = NULL;
-}
 typedef struct LL{
-	Node* head;
-	Node* tail;
-	int size;
+    Node* head;
+    Node* tail;
 }LL;
 LL* createList(){
-	LL* l = (LL*)malloc(sizeof(LL));
-	l->head = l->tail = NULL;
-	l->size = 0;
+    LL *l = (LL*)malloc(sizeof(LL));
+    l->head = NULL;
+    l->tail = NULL;
+    return l;
 }
-void push_front(LL* l,int data){
-	Node *new_node = createNode(data);
-	if(l->head==NULL){
-		l->head = l->tail = new_node;
-	}
-	else{
-		new_node->next = l->head;
-		l->head = new_node;
-	}
-	(l->size)++;
+Node* createNode(int val){
+    Node* newNode = (Node*)malloc(sizeof(LL));
+    newNode->val = val;
+    newNode->next = NULL;
+    return newNode;
 }
-void push_back(LL* l, int data){
-	Node* new_node = createNode(data);
-	if(l->head==NULL){
-		l->head = l->tail = new_node;
-	}
-	else{
-		l->tail->next = new_node;
-		l->tail = new_node;
-	}
-	(l->size)++;
+void insert_at_head(LL* l, int val){
+    Node* newNode = createNode(val);
+    if(l->head == NULL){
+        l->head = newNode;
+        l->tail = newNode;
+        return;
+    }
+    newNode->next = l->head;
+    l->head = newNode;
 }
-int size(LL* l){
-	return l->size;
+void insert_at_tail(LL* l, int val){
+    Node* newNode = createNode(val);
+    if(l->head == NULL){
+        l->head = newNode;
+        l->tail = newNode;
+        return;
+    }
+    l->tail->next = newNode;
+    l->tail = newNode;
 }
-void pop_front(LL* l){
-	if(l->head==NULL){
-		return;
-	}
-	Node* temp = l->head;
-	l->head = l->head->next;
-	temp->next = NULL;
-	free(temp);
-	(l->size)--;
+void insert(LL* l, int val){
+    Node* newNode = createNode(val);
+    if(l->head == NULL){
+        l->head = newNode;
+        l->tail = newNode;
+        return;
+    }
+    if(l->head->val >= val){
+        insert_at_head(l,val);
+        return;
+    }
+    if(l->tail->val <= val){
+        insert_at_tail(l,val);
+        return;
+    }
+    Node* curr = l->head;
+    while(curr->next->val < val){
+        curr = curr->next;
+    }
+    newNode->next = curr->next;
+    curr->next = newNode;
 }
-void pop_back(LL* l){
-	if(l->head==NULL){
-		return;
-	}
-	Node* temp = l->head;
-	while(temp->next!=l->tail){
-		temp = temp->next;
-	}
-	l->tail = temp;
-	temp = temp->next;
-	l->tail->next = NULL;
-	free(temp);
-	(l->size)--;
+void rem(LL *l, int val){
+    Node* curr = l->head;
+    if(l->head->val == val){
+        l->head = l->head->next;
+        free(curr);
+        return;
+    }
+    Node* prev;
+    while(curr!=null){
+        if(curr->val == val){
+            break;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    if(curr == null){
+        printf("\nElement not found\n");
+        return;
+    }
+    if(curr->next == null){
+        l->tail = prev;
+    }
+    prev->next = curr->next;
+    free(curr);
 }
-void reverse(LL* l){
-	Node* prev = NULL;
-	Node* curr = l->head;
-	Node* next;
-	while(curr!=NULL){
-		next = curr->next;
-		curr->next = prev;
-
-		prev = curr;
-		curr = next;
-	}
-	l->head = prev;
+void display(LL* l){
+    Node* curr = l->head;
+    while(curr!=NULL){
+        printf(" %d -->",curr->val);
+        curr = curr->next;
+    }
+    printf(" NULL\n");
 }
