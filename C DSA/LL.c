@@ -2,24 +2,24 @@
 #include "LL.h"
 int main(){
     LL *l = createList();
-    insert(l,12);
-    insert(l,13);
-    insert(l,14);
-    insert(l,15);
-    insert(l,2);
-    insert(l,6);
+    insertWithoutTail(l,12);
+    insertWithoutTail(l,13);
+    insertWithoutTail(l,14);
+    insertWithoutTail(l,15);
+    insertWithoutTail(l,2);
+    insertWithoutTail(l,6);
     display(l);
-    rem(l,13);
+    delete(l,13);
     display(l);
-    rem(l,2);
+    delete(l,2);
     display(l);
-    insert(l,45);
-    insert(l,30);
-    insert(l,33);
-    insert(l,34);
-    insert(l,49);
+    insertWithoutTail(l,45);
+    insertWithoutTail(l,30);
+    insertWithoutTail(l,33);
+    insertWithoutTail(l,34);
+    insertWithoutTail(l,49);
     display(l);
-    rem(l,49);
+    delete(l,49);
     display(l);
     return 0;
 }

@@ -63,6 +63,24 @@ void insert(LL* l, int val){
     newNode->next = curr->next;
     curr->next = newNode;
 }
+void insertWithoutTail(LL* l, int val){
+    Node* newNode = createNode(val);
+    if(l->head == null){
+        l->head = l->tail = newNode;
+        return;
+    }
+    if(l->head->val > val){
+        newNode->next = l->head;
+        l->head = newNode;
+        return;
+    }
+    Node* curr = l->head;
+    while(curr->next!=null && curr->next->val < val){
+        curr = curr->next;
+    }
+    newNode->next = curr->next;
+    curr->next = newNode;
+}
 void rem(LL *l, int val){
     Node* curr = l->head;
     if(l->head->val == val){
@@ -87,6 +105,25 @@ void rem(LL *l, int val){
     }
     prev->next = curr->next;
     free(curr);
+}
+Node* delete(LL* l, int x){
+    Node* curr;
+    curr = l->head;
+    if(l->head->val == x){
+        l->head = l->head->next;
+        return curr;
+    }
+    while(curr->next!= null && curr->next->val != x){
+        curr = curr->next;
+    }
+    if(curr->next == null){
+        printf("Element not found\n");
+        return NULL;
+    }
+    Node* temp = curr->next;
+    curr->next = curr->next->next;
+    temp->next = NULL;
+    return temp;
 }
 void display(LL* l){
     Node* curr = l->head;
